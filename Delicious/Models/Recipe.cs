@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,9 @@ namespace Delicious.Models
     public class Recipe
     {
         public Guid Id { get; set; }
+        [Display(Name ="Naziv recepta")]
         public string RecipeName { get; set; }
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public string ImageName { get; set; }
 
