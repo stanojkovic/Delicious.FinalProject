@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Delicious.Models.Recipe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-lg-4">
+            <h2>Kolaci</h2>
+        </div>
+        <div class="col-lg-8 ">
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+        </div>
+    </div>
+
+@*<table class="table">
+    <tr>
+        <th class="text-warning">СЛИКА</th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InputDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:125px;">
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecipeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InputDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col-sm-4 mt-4 text-center">
+             
+            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
+            <br>
+            @Html.DisplayNameFor(model => model.RecipeName)
+            @Html.Raw(":&nbsp;")
+            @Html.DisplayFor(modelItem => item.RecipeName)
+            @Html.Raw("</br>")
+
+
+            @Html.DisplayNameFor(model => model.Description)
+            @Html.Raw(":&nbsp;")
+
+            <div class="row border border-primary m-1">
+                <div class="col-12  p-3">
+
+                    @Html.DisplayFor(modelItem => item.Description)
+                </div>
+            </div>
+
+
+            @Html.Raw("</br>")
+            @Html.DisplayNameFor(model => model.InputDate)
+            @Html.Raw(":&nbsp;")
+            @Html.DisplayFor(modelItem => item.InputDate)
+            @Html.Raw("</br>")
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.Raw("&nbsp;")
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.Raw("&nbsp;")
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <hr>
+        </div>
+        }
+    </div>
+</div>
