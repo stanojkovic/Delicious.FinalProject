@@ -9,7 +9,7 @@ namespace Delicious.Models
     public class Recipe
     {
         public Guid Id { get; set; }
-        [Display(Name ="Naziv recepta")]
+        [Display(Name ="Naziv")]
         public string RecipeName { get; set; }
         [Display(Name = "Opis")]
         public string Description { get; set; }

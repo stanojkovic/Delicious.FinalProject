@@ -1,51 +1,65 @@
-﻿@model Delicious.Models.Recipe
-
+﻿@using Delicious.Models
+@model Delicious.Models.Recipe
+@*@model Delicious.Models.RecipeGridViewModel*@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="conatiner ">
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2">
+            <h2>Detalji</h2>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RecipeName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RecipeName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                @*<dt>
+                    @Html.DisplayNameFor(model => model.Category.CategoriesName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Category.CategoriesName)
+                </dd>*@
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.ImageName)
+                    </dt>
 
-<div>
-    <h4>Recipe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RecipeName)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ImageName)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RecipeName)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.InputDate)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.InputDate)
+                    </dd>*@
+            </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            @*<div class="col-lg-4">
+                @foreach (var item in Model.Recipes)
+    {
+            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
+@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                }*@
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.ImageName)
-        </dt>
+            </div>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ImageName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InputDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InputDate)
-        </dd>*@
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+<p ml-5>
+     
+    @Html.ActionLink("Nazad na početnu stranu !", "Index")
 </p>

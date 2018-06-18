@@ -7,27 +7,47 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
+
+
+
+
 <div class="container">
     <div class="row mt-4">
         <div class="col-lg-2">
-            <h3 class="text-default"><i><strong><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Kolači</strong></i></h3>
+            <h3 class="text-primary"><strong>Kolači</strong></h3>
         </div>
         <div class="col-lg-2">
             @*<h3 class="text-primary">Укупно: @Model.Articles.Count</h3>*@     @*dodaj Articles*@
-            <h3 class="text-primary"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>     @*//paginacija*@
-        </div>
-        <div class="col-lg-6">
-            <div class="row">
-                <div class="col-lg-6">Претрага по називу:  @Html.TextBox("Query", null, new { @class = "form-control text-primary" })</div>
+            @*<h3 class="text-primary badge badge-warning"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>*@   
 
+            <button type="button" class="btn btn-primary">
+                Укупно:&nbsp;&nbsp; <span class="badge badge-light">@Model.Count</span>
+                <span class="sr-only">unread messages</span>
+            </button>
+
+        </div>
+
+
+        <div class="col-lg-6">
+            @using (@Html.BeginForm())
+        {
+
+
+            <div class="row">
+                <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
                 <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
             </div>
+
+    }
         </div>
         <div class="col-lg-2 ">
             <p>
                 <button class="btn btn-amber">
                     <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                    @Html.ActionLink("Create New", "Create")
+                    @Html.ActionLink("Dodaj recept", "Create")
                 </button>
             </p>
         </div>
@@ -35,134 +55,61 @@
 </div>
 
 
-<div class="row">
-    <div class="col-lg-9">
-
-    </div>
-
-
-</div>
-
-
 <hr>
-
-@using (@Html.BeginForm())
-{
 
 
     <div class="container">
         <div class="row">
-
-        </div>
-    </div>
-
-
-}
-@*<table class="table">
-        <tr>
-            <th class="text-warning">СЛИКА</th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecipeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InputDate)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:125px;">
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RecipeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImageName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InputDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-
-
-
-
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model.Recipes)
+            @foreach (var item in Model.Recipes)
         {
             <div class="col-sm-4 mt-4 text-center">
-
                 @*@if (item.Category.CategoriesName == "Peciva")
 
-                    {*@
-
-                <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
-                <br>
-                <h4 class="text-danger">@item.RecipeName</h4>
-
-                @*@Html.DisplayNameFor(model => model.RecipeName)*@
-                @*@Html.Raw(":&nbsp;")*@
-                @*@Html.DisplayFor(modelItem => item.RecipeName)*@
-                @Html.Raw("</br>")
+        {*@
 
 
-                @item.InputDate
-                @Html.Raw("</br>")
-                @*@Html.DisplayNameFor(model => model.InputDate)*@
-                @*@Html.Raw(":&nbsp;")*@
-                @*@Html.DisplayFor(modelItem => item.InputDate)*@
-                @Html.Raw("</br>")
-                @*@item.Category.CategoriesName*@
-                @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
+                <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
+                    <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+                </a>
 
-                <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
-                @Html.Raw("&nbsp;")
-                <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
-                @Html.Raw("&nbsp;")
-                <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
-                <hr>
-                @*}*@
 
+                    @*<img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">*@
+                    <br>
+                    <h4 class="text-danger">@item.RecipeName</h4>
+                    @*@Html.DisplayNameFor(model => model.RecipeName)*@
+                    @*@Html.Raw(":&nbsp;")*@
+                    @*@Html.DisplayFor(modelItem => item.RecipeName)*@
+                    @Html.Raw("</br>")
+
+                    @item.InputDate
+                    @Html.Raw("</br>")
+                    @*@Html.DisplayNameFor(model => model.InputDate)*@
+                    @*@Html.Raw(":&nbsp;")*@
+                    @*@Html.DisplayFor(modelItem => item.InputDate)*@
+                    @Html.Raw("</br>")
+                    @*@item.Category.CategoriesName*@
+                    @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
+                    <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
+                    @Html.Raw("&nbsp;")
+                    <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
+                    @Html.Raw("&nbsp;")
+                    <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+                    <hr>
+                    @*}*@
             </div>
-        }
+    }
+        </div>
     </div>
-</div>
-
-<hr>
 
 <div class="container">
     <div class="row text-center">
         <div class="col-lg-12">
             <nav aria-label="Page navigation example">
-
                 <ul class="pagination justify-content-center">
                     <li>
-
 
                         @for (int i = 1; i <= Model.TotalPages; i++)
                         {
@@ -170,14 +117,12 @@
                             @Html.Raw("&nbsp;")
 
                         }
-
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
 </div>
-
 @section Scripts
 {
     <script>

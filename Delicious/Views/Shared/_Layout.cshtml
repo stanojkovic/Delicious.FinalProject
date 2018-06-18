@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-   
-    
-    @Scripts.Render("~/bundles/modernizr")
 
+    <link rel="stylesheet" href="~/Content/lightbox/dist/css/lightbox.min.css">
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="background-color:white;">
-
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -20,54 +18,37 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
-
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
-
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
 
-
     <div class="container-fluid">
-
         @RenderBody()
-    
-</div>
 
+    </div>
     <footer class="page-footer font-small stylish-color-dark mt-4" style="background-color:#2c3e50;">
-
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
-
             <!-- Grid row -->
             <div class="row">
-
                 <!-- Grid column -->
                 <div class="col-md-4 mx-auto">
-
                     <!-- Content -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
                     <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
                 </div>
                 <!-- Grid column -->
-
                 <hr class="clearfix w-100 d-md-none">
-
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
-
                     <!-- Links -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-
                     <ul class="list-unstyled">
                         <li>
                             <a href="#!">Link 1</a>
@@ -82,18 +63,13 @@
                             <a href="#!">Link 4</a>
                         </li>
                     </ul>
-
                 </div>
                 <!-- Grid column -->
-
                 <hr class="clearfix w-100 d-md-none">
-
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
-
                     <!-- Links -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-
                     <ul class="list-unstyled">
                         <li>
                             <a href="#!">Link 1</a>
@@ -108,18 +84,13 @@
                             <a href="#!">Link 4</a>
                         </li>
                     </ul>
-
                 </div>
                 <!-- Grid column -->
-
                 <hr class="clearfix w-100 d-md-none">
-
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
-
                     <!-- Links -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-
                     <ul class="list-unstyled">
                         <li>
                             <a href="#!">Link 1</a>
@@ -134,18 +105,13 @@
                             <a href="#!">Link 4</a>
                         </li>
                     </ul>
-
                 </div>
                 <!-- Grid column -->
-
             </div>
             <!-- Grid row -->
-
         </div>
         <!-- Footer Links -->
-
         <hr>
-
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
@@ -156,9 +122,7 @@
             </li>
         </ul>
         <!-- Call to action -->
-
         <hr>
-
         <!-- Social buttons -->
         <ul class="list-unstyled list-inline text-center">
             <li class="list-inline-item">
@@ -187,9 +151,7 @@
                 </a>
             </li>
         </ul>
-
         <hr>
-
         <!-- Social buttons -->
         <!-- Copyright -->
         <div class="footer-copyright text-center">
@@ -197,12 +159,10 @@
             <a href="https://mdbootstrap.com/bootstrap-tutorial/"> StariAsovi</a>
         </div>
         <!-- Copyright -->
-
     </footer>
     <!-- Footer -->
-   
 
-
+    <script src="~/Content/lightbox/dist/js/lightbox-plus-jquery.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @*@Scripts.Render("~/bundles/mdb")*@
