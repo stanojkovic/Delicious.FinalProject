@@ -1,10 +1,12 @@
-﻿@model IEnumerable<Delicious.Models.Recipe>
+﻿
+@using Delicious.Models
+@*@model IEnumerable<Delicious.Models.Recipe>*@
 
+@model Delicious.Models.RecipeGridViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container">
     <div class="row mt-4">
         <div class="col-lg-4">
@@ -15,87 +17,114 @@
                 @Html.ActionLink("Create New", "Create")
             </p>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-9">
+        <h3 class="text-default"><i><strong><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Производи</strong></i></h3>
+    </div>
+    <div class="col-lg-3">
+        @*<h3 class="text-primary">Укупно: @Model.Articles.Count</h3>*@     @*dodaj Articles*@
+        <h3 class="text-primary"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>     @*//paginacija*@
+    </div>
+
+</div>
+
+
+<hr>
+
+@using (@Html.BeginForm())
+{
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">Претрага по називу:  @Html.TextBox("Query", null, new { @class = "form-control text-primary" })</div>
+            
+            <div class="col-lg-4"><button type="submit" value="Search" class="btn btn-default btn-lg "> <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Тражи </button></div>
         </div>
     </div>
 
+
+}
 @*<table class="table">
-    <tr>
-        <th class="text-warning">СЛИКА</th>
-        <th>
-            @Html.DisplayNameFor(model => model.RecipeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InputDate)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
         <tr>
-            <td>
-                <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:125px;">
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InputDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th class="text-warning">СЛИКА</th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InputDate)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:125px;">
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InputDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+
 
 
 <div class="container">
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Recipes)
         {
         <div class="col-sm-4 mt-4 text-center">
-             
+
+            @*@if (item.Category.CategoriesName == "Peciva")
+
+        {*@
+
             <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
             <br>
-            @Html.DisplayNameFor(model => model.RecipeName)
+            @item.RecipeName
+            @*@Html.DisplayNameFor(model => model.RecipeName)*@
             @Html.Raw(":&nbsp;")
-            @Html.DisplayFor(modelItem => item.RecipeName)
+            @*@Html.DisplayFor(modelItem => item.RecipeName)*@
             @Html.Raw("</br>")
 
 
-            @Html.DisplayNameFor(model => model.Description)
-            @Html.Raw(":&nbsp;")
-
-            <div class="row border border-primary m-1">
-                <div class="col-12  p-3">
-
-                    @Html.DisplayFor(modelItem => item.Description)
-                </div>
-            </div>
-
-
+            @item.InputDate
             @Html.Raw("</br>")
-            @Html.DisplayNameFor(model => model.InputDate)
+            @*@Html.DisplayNameFor(model => model.InputDate)*@
             @Html.Raw(":&nbsp;")
-            @Html.DisplayFor(modelItem => item.InputDate)
+            @*@Html.DisplayFor(modelItem => item.InputDate)*@
             @Html.Raw("</br>")
+
+            @Html.DisplayFor(r => item.Category.CategoriesName)
+
 
             @Html.ActionLink("Edit", "Edit", new { id = item.Id })
             @Html.Raw("&nbsp;")
@@ -103,7 +132,33 @@
             @Html.Raw("&nbsp;")
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             <hr>
+            @*}*@
+
         </div>
         }
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <nav aria-label="Page navigation example">
+
+                <ul class="pagination justify-content-center">
+                    <li>
+
+
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i))
+
+                        }
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
