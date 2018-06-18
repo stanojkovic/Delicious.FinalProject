@@ -9,24 +9,37 @@
 }
 <div class="container">
     <div class="row mt-4">
-        <div class="col-lg-4">
-            <h2>Kolaci</h2>
+        <div class="col-lg-2">
+            <h3 class="text-default"><i><strong><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Kolači</strong></i></h3>
         </div>
-        <div class="col-lg-8 ">
+        <div class="col-lg-2">
+            @*<h3 class="text-primary">Укупно: @Model.Articles.Count</h3>*@     @*dodaj Articles*@
+            <h3 class="text-primary"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>     @*//paginacija*@
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6">Претрага по називу:  @Html.TextBox("Query", null, new { @class = "form-control text-primary" })</div>
+
+                <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
+            </div>
+        </div>
+        <div class="col-lg-2 ">
             <p>
-                @Html.ActionLink("Create New", "Create")
+                <button class="btn btn-amber">
+                    <span class="fa fa-plus"></span>&nbsp;&nbsp;
+                    @Html.ActionLink("Create New", "Create")
+                </button>
             </p>
         </div>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-lg-9">
-        <h3 class="text-default"><i><strong><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Производи</strong></i></h3>
+
     </div>
-    <div class="col-lg-3">
-        @*<h3 class="text-primary">Укупно: @Model.Articles.Count</h3>*@     @*dodaj Articles*@
-        <h3 class="text-primary"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>     @*//paginacija*@
-    </div>
+
 
 </div>
 
@@ -39,9 +52,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">Претрага по називу:  @Html.TextBox("Query", null, new { @class = "form-control text-primary" })</div>
-            
-            <div class="col-lg-4"><button type="submit" value="Search" class="btn btn-default btn-lg "> <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Тражи </button></div>
+
         </div>
     </div>
 
@@ -101,40 +112,43 @@
     <div class="row">
         @foreach (var item in Model.Recipes)
         {
-        <div class="col-sm-4 mt-4 text-center">
+            <div class="col-sm-4 mt-4 text-center">
 
-            @*@if (item.Category.CategoriesName == "Peciva")
+                @*@if (item.Category.CategoriesName == "Peciva")
 
-        {*@
+                    {*@
 
-            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
-            <br>
-            @item.RecipeName
-            @*@Html.DisplayNameFor(model => model.RecipeName)*@
-            @Html.Raw(":&nbsp;")
-            @*@Html.DisplayFor(modelItem => item.RecipeName)*@
-            @Html.Raw("</br>")
+                <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
+                <br>
+                <h4 class="text-danger">@item.RecipeName</h4>
 
-
-            @item.InputDate
-            @Html.Raw("</br>")
-            @*@Html.DisplayNameFor(model => model.InputDate)*@
-            @Html.Raw(":&nbsp;")
-            @*@Html.DisplayFor(modelItem => item.InputDate)*@
-            @Html.Raw("</br>")
-
-            @Html.DisplayFor(r => item.Category.CategoriesName)
+                @*@Html.DisplayNameFor(model => model.RecipeName)*@
+                @*@Html.Raw(":&nbsp;")*@
+                @*@Html.DisplayFor(modelItem => item.RecipeName)*@
+                @Html.Raw("</br>")
 
 
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-            @Html.Raw("&nbsp;")
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
-            @Html.Raw("&nbsp;")
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            <hr>
-            @*}*@
+                @item.InputDate
+                @Html.Raw("</br>")
+                @*@Html.DisplayNameFor(model => model.InputDate)*@
+                @*@Html.Raw(":&nbsp;")*@
+                @*@Html.DisplayFor(modelItem => item.InputDate)*@
+                @Html.Raw("</br>")
+                @*@item.Category.CategoriesName*@
+                @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
 
-        </div>
+                <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
+                @Html.Raw("&nbsp;")
+                <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
+                @Html.Raw("&nbsp;")
+                <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+                <hr>
+                @*}*@
+
+            </div>
         }
     </div>
 </div>
@@ -152,7 +166,8 @@
 
                         @for (int i = 1; i <= Model.TotalPages; i++)
                         {
-                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i))
+                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i), new { @class = " btn btn-warning btn-lg" })
+                            @Html.Raw("&nbsp;")
 
                         }
 
@@ -162,3 +177,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        $('.delete-dugme').on('click', function () {
+            return confirm("Da li ste sigurni ?");
+        })
+    </script>
+}
