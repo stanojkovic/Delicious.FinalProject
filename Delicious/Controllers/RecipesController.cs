@@ -97,30 +97,38 @@ namespace Delicious.Controllers
         //}
 
 
+        //string[] IngredientNames, ICollection<Ingredient> ingredientId, FormCollection collection
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Recipe recipe, int categoryId , int[] IngredientsIds, HttpPostedFileBase img)  //ICollection<Ingredient> ingredientId
+        public ActionResult Create(Recipe recipe, int categoryId , string[] IngredientNames, HttpPostedFileBase img) //ICollection<Ingredient> IngredientNames
         {
             if (ModelState.IsValid)
             {
-                //snimanje u bazu
+                //snimanje u bazu Category
                 //recipe.Category = db.Categories.Find(recipe.Category.Id);
                 recipe.Category = db.Categories.Find(categoryId);
 
-                if (IngredientsIds != null)
-                {
-                    recipe.Ingredients = db.Ingredients.Where(x => IngredientsIds.Contains(x.Id)).ToList();
-                }
+
+                //snimanje u bazu Ingredients
+
+                //if (IngredientNames != null)
+                //{
+                //    recipe.Ingredients = db.Ingredients.Where(x => IngredientNames.Contains(x.IngredientName)).ToList();
+                //}
+
+                //recipe.Ingredients = db.Ingredients.Find(IngredientNames) as ICollection<Ingredient>;
+                //recipe.Ingredients = (ICollection<Ingredient>)db.Ingredients.Find(IngredientNames);
 
 
-              
+
                 recipe.Id = Guid.NewGuid();
                 db.Recipes.Add(recipe);
+                
                 db.SaveChanges();
                 SaveImage(recipe, img);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-
+                return RedirectToAction("Index", IngredientNames);
+                
             }
 
                   

@@ -49,37 +49,48 @@
                         </div>
                     </div>
 
-                   
-
-
-
 
 
                     @*file upload*@
                     <label>Slika:</label><br>
                     <input name="img" type="file" accept=".jpg, .png, .gif">
                     <hr>
-                    
+
                 </div>
-                
+
             </div>
+            @*@Html.BeginForm(new { action = "Create"})
+            {*@
             <div class="col-6">
                 <div class="form-horizontal">
-                   <h4>Odaberite sastojke !</h4>
+                    <h4>Odaberite sastojke !</h4>
                     <hr />
+
+                    @*<input type="checkbox" name="tags" id="categorieOne" value="1" />
+
+                    <input type="checkbox" name="tags" id="categorieTwo" value="2" />*@
+
+                    @*<input type="submit" value="Submit" />*@
+
+
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @foreach (var ingredient in ViewBag.Ingredients)
+
+                           @foreach (var ingredient in ViewBag.Ingredients)
                             {
-                <input type="checkbox" name="IngredientIds" value="@ingredient.Id">@ingredient.IngredientName<br>
+                                <input type="checkbox" name="IngredientNames" value="@ingredient.IngredientName">@ingredient.IngredientName<br>
                             }
+
+                           
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
+            @*}*@
+           
 
         <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
