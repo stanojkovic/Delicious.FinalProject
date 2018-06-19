@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/Content/lightbox/dist/css/lightbox.min.css">
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-color:white;">
+<body style="background-image: linear-gradient(white, yellow);">
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -18,8 +18,8 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "" ,kategorija = "Kolači" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "" , kategorija = "Peciva" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
@@ -28,7 +28,7 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
         @RenderBody()
 
     </div>

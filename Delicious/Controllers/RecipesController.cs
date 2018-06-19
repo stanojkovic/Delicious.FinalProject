@@ -20,7 +20,7 @@ namespace Delicious.Controllers
         public object IngredientName { get; private set; }
 
         // GET: Recipes
-        public ActionResult Index(RecipeGridViewModel viewModel)
+        public ActionResult Index(RecipeGridViewModel viewModel, string kategorija)
         {
             if (Request.HttpMethod == "POST")
             {
@@ -28,6 +28,11 @@ namespace Delicious.Controllers
             }
 
             IQueryable<Recipe> recipes = db.Recipes;
+
+            if (kategorija != null)
+            {
+                recipes = recipes.Where(r => r.Category.CategoriesName == kategorija);
+            }
 
             if (viewModel.Query != null)
             {

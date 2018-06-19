@@ -9,27 +9,28 @@
 <div class="conatiner ">
     <div class="row mt-5">
         <div class="col-lg-8 offset-lg-2">
-            <h2>Detalji</h2>
+            <span class="fa fa-th-list fa-4x"></span>
+            <h2 class="display-4">Detalji</h2>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
                     @Html.DisplayNameFor(model => model.RecipeName)
                 </dt>
-                <dd>
+                <dd style="font-size:30px;" class="text-danger">
                     @Html.DisplayFor(model => model.RecipeName)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
-                <dd>
+                <dd style="font-size:20px;">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
                 @*<dt>
-                    @Html.DisplayNameFor(model => model.Category.CategoriesName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Category.CategoriesName)
-                </dd>*@
+                        @Html.DisplayNameFor(model => model.Category.CategoriesName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Category.CategoriesName)
+                    </dd>*@
                 @*<dt>
                         @Html.DisplayNameFor(model => model.ImageName)
                     </dt>
@@ -48,18 +49,25 @@
             </dl>
 
             @*<div class="col-lg-4">
-                @foreach (var item in Model.Recipes)
-    {
-            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
-@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                }*@
+                                @foreach (var item in Model.Recipes)
+                    {
+                            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                }*@
 
-            </div>
         </div>
     </div>
+</div>
 
-
+<div class="container ">
+    <div class="row text-md-right mt-3">
+        <div class="col-md-12 ">
+            <span class="fa fa-arrow-circle-left"></span>
+            @Html.ActionLink("Nazad na početnu stranu !", "Index")
+        </div>
+    </div>
+</div>
 <p ml-5>
-     
-    @Html.ActionLink("Nazad na početnu stranu !", "Index")
+
+
 </p>
