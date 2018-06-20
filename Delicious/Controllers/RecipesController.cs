@@ -43,7 +43,6 @@ namespace Delicious.Controllers
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));
-                //recipes = recipes.Where(r => r.Category.CategoriesName == kategorija);
             }
 
             ViewBag.Direction = viewModel.SortDirection == "ASC" ? "DESC" : "ASC";
@@ -127,14 +126,14 @@ namespace Delicious.Controllers
                 //recipe.Ingredients = (ICollection<Ingredient>)db.Ingredients.Find(IngredientNames);
 
 
-                //recipe.InputDate = DateTime.Now;
+                recipe.InputDate = DateTime.Now;
                 recipe.Id = Guid.NewGuid();
                 db.Recipes.Add(recipe);
                 
                 db.SaveChanges();
                 SaveImage(recipe, img);
                 db.SaveChanges();
-                return RedirectToAction("Index", IngredientIds);
+                return RedirectToAction("Index");
                 
             }
 
@@ -191,7 +190,7 @@ namespace Delicious.Controllers
                 var recipeBase = db.Recipes.Find(recipeForm.Id);
                 TryUpdateModel(recipeBase, new string[] { "RecipeName", "Description", "Category", "Ingredients"});
                 recipeBase.Category = db.Categories.Find(categoryId);
-
+                recipeForm.InputDate = DateTime.Now;
                 //recipe.Ingredients.Clear();
                 //if (IngredientsIds != null)
                 //{
@@ -199,8 +198,8 @@ namespace Delicious.Controllers
                 //}
 
                 //update vrednostima iz forme, proizvodIzBaze!!!
-                
-                
+
+
 
                 SaveImage(recipeBase, img);
                 db.SaveChanges();

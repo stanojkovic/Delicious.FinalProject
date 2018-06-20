@@ -20,17 +20,20 @@
     <div class="row mt-4">
         <div class="col-lg-2">
             @if (@Model.kategorija == "Kolači")
-                    {
+            {
                         <h3 class="text-primary"><strong>Kolači</strong></h3>
-                }
-                else if (@Model.kategorija == "Peciva")
-                {
+            }
+            else if (@Model.kategorija == "Peciva")
+            {
                         <h3 class="text-primary"><strong>Peciva</strong></h3>
-                }
-                else
-                {
+            }
+            else if (@Model.kategorija == "Zdrava Hrana")
+            {
                         <h4 class="text-primary"><strong>Zdrava Hrana</strong></h4>
-                }
+            }
+            else
+            {
+            }
 
 
 
@@ -72,7 +75,7 @@
 </div>
 
 
-@*@Html.ActionLink("Sortiraj po nazivu", "Index", Model.GetSortingParameters("RecipeName"), new { @class = "text-warning" })*@
+@Html.ActionLink("Sortiraj po nazivu", "Index", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-warning" })
 @*@Html.ActionLink("Sortiraj po nazivu", "Index", "Recipes", Model.GetSortingParameters("RecipeName"), new { area = "", kategorija = "Kolači" }, new { @class = "nav-link" })*@
 <hr>
 

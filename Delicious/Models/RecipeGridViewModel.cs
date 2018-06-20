@@ -33,13 +33,13 @@ namespace Delicious.Models
         }
 
         //za sorting
-        public object GetSortingParameters(string field)        //string kategorija
+        public object GetSortingParameters(string field, string category)        //string kategorija
         {
             //default direction
             var direction = "ASC";
 
             //menjamo smer sortiranja ako je vec sortiran po istom parametru
-            //&& SortByCategory == kategorija
+          
             if (SortBy == field )
             {
                 //ako je bio asc bice desc i obratno
@@ -50,7 +50,7 @@ namespace Delicious.Models
             return new
             {
                 SortBy = field,
-                //SortByCategory = kategorija,
+                kategorija = category,
                 SortDirection = direction,
 
                 Query = Query,
@@ -64,7 +64,7 @@ namespace Delicious.Models
             return new
             {
                 SortBy,
-                //SortByCategory,
+                kategorija,
                 SortDirection,
 
                 Query,
