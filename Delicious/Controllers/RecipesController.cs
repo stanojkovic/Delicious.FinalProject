@@ -39,9 +39,11 @@ namespace Delicious.Controllers
                 recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
             }
 
+            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));
+                //recipes = recipes.Where(r => r.Category.CategoriesName == kategorija);
             }
 
             ViewBag.Direction = viewModel.SortDirection == "ASC" ? "DESC" : "ASC";
@@ -105,7 +107,7 @@ namespace Delicious.Controllers
         //string[] IngredientNames, ICollection<Ingredient> ingredientId, FormCollection collection
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Recipe recipe, int categoryId , string[] IngredientNames, HttpPostedFileBase img) //ICollection<Ingredient> IngredientNames
+        public ActionResult Create(Recipe recipe, int categoryId , int[] IngredientIds, HttpPostedFileBase img) //ICollection<Ingredient> IngredientNames
         {
             if (ModelState.IsValid)
             {
@@ -121,18 +123,18 @@ namespace Delicious.Controllers
                 //    recipe.Ingredients = db.Ingredients.Where(x => IngredientNames.Contains(x.IngredientName)).ToList();
                 //}
 
-                //recipe.Ingredients = db.Ingredients.Find(IngredientNames) as ICollection<Ingredient>;
+                //recipe.Ingredients = db.Ingredients.Find(IngredientIds) as ICollection<Ingredient>;
                 //recipe.Ingredients = (ICollection<Ingredient>)db.Ingredients.Find(IngredientNames);
 
 
-
+                //recipe.InputDate = DateTime.Now;
                 recipe.Id = Guid.NewGuid();
                 db.Recipes.Add(recipe);
                 
                 db.SaveChanges();
                 SaveImage(recipe, img);
                 db.SaveChanges();
-                return RedirectToAction("Index", IngredientNames);
+                return RedirectToAction("Index", IngredientIds);
                 
             }
 
@@ -181,7 +183,7 @@ namespace Delicious.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Recipe recipeForm, int categoryId, int[] IngredientsIds, HttpPostedFileBase img)
+        public ActionResult Edit(Recipe recipeForm, int categoryId, int[] IngredientsNames, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {

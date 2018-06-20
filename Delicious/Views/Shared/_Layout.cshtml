@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="~/Content/lightbox/dist/css/lightbox.min.css">
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-image: linear-gradient(white, yellow);">
+@*style="background-image: linear-gradient(white, yellow);"*@
+@*style="background-image: url(/Content/img/BluePattern.jpg);"*@
+<body style="background-image: linear-gradient(white, #2989b9);">
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -18,8 +20,9 @@
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "" ,kategorija = "Kolači" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "" , kategorija = "Peciva" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "", kategorija = "Kolači" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
@@ -28,11 +31,11 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" >
         @RenderBody()
 
     </div>
-    <footer class="page-footer font-small stylish-color-dark mt-4" style="background-color:#2c3e50;">
+    <footer class="page-footer font-small stylish-color-dark" style="background-color:#2c3e50;">
         <!-- Footer Links -->
         <div class="container text-center text-md-left">
             <!-- Grid row -->
@@ -118,7 +121,8 @@
                 <h5 class="mb-1">Register for free</h5>
             </li>
             <li class="list-inline-item">
-                <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+                @Html.ActionLink("Sign up!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-white btn btn-danger btn-rounded" })
+                @*<a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>*@
             </li>
         </ul>
         <!-- Call to action -->

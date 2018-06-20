@@ -15,6 +15,8 @@ namespace Delicious.Models
         public string Description { get; set; }
         public string ImageName { get; set; }
 
+      
+
         public string ImageNameToShow
         {
             get
@@ -23,10 +25,8 @@ namespace Delicious.Models
             }
         }
 
-        public DateTime InputDate
-        {
-            get { return DateTime.Now; }
-        }
+        public DateTime InputDate { get; set; }
+        
         public Category Category { get; set; }
 
 

@@ -1,11 +1,12 @@
 ﻿@using Delicious.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Ulogujte se";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+<div class="container p-4">
+<h2 mt-4>@ViewBag.Title.</h2>
+<div class="row mt-4">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -56,6 +57,7 @@
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
+</div>
 </div>
 
 @section Scripts {

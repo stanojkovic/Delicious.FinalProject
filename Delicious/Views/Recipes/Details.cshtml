@@ -22,7 +22,7 @@
                 <dt>
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
-                <dd style="font-size:20px;">
+                <dd style="font-size:20px; color:#34495e;">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
                 @*<dt>
@@ -60,10 +60,25 @@
 </div>
 
 <div class="container ">
-    <div class="row text-md-right mt-3">
-        <div class="col-md-12 ">
-            <span class="fa fa-arrow-circle-left"></span>
-            @Html.ActionLink("Nazad na početnu stranu !", "Index")
+    <div class="row  mt-3 justify-content-lg-center">
+        <div class=" col-lg-3 offset-lg-1">
+
+            @Html.ActionLink("Kolači", "Index", "Recipes", new { area = "", kategorija = "Kolači" }, new { @class = "nav-link btn btn-warning col-lg-4" })
+          
+
+        </div>
+        <div class="col-md-3">
+
+         
+            @Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link  btn btn-warning col-lg-4" })
+           
+
+        </div>
+        <div class="col-md-3">
+
+          
+            @Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link  btn btn-warning col-lg-7" })
+
         </div>
     </div>
 </div>

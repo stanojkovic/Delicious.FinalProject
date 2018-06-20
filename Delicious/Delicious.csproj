@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201806171031408_RecipeIngredientsClass.Designer.cs">
       <DependentUpon>201806171031408_RecipeIngredientsClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806200859119_unknown.cs" />
+    <Compile Include="Migrations\201806200859119_unknown.Designer.cs">
+      <DependentUpon>201806200859119_unknown.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -273,6 +277,7 @@
     <Content Include="Content\img\bakery02.jpg" />
     <Content Include="Content\img\bakery03.jpg" />
     <Content Include="Content\img\bakery04.jpg" />
+    <Content Include="Content\img\BluePattern.jpg" />
     <Content Include="Content\img\cake.png" />
     <Content Include="Content\img\Cake01.jpg" />
     <Content Include="Content\img\Cake02.jpg" />
@@ -282,6 +287,12 @@
     <Content Include="Content\img\Cake06.jpg" />
     <Content Include="Content\img\Cake07.jpg" />
     <Content Include="Content\img\no_image.png" />
+    <Content Include="Content\img\peciva.jpg" />
+    <Content Include="Content\img\zdrava01.jpg" />
+    <Content Include="Content\img\zdrava02.jpg" />
+    <Content Include="Content\img\zdrava03.jpg" />
+    <Content Include="Content\img\zdrava04.jpg" />
+    <Content Include="Content\img\zdrava05.jpg" />
     <Content Include="Content\lightbox\.editorconfig" />
     <Content Include="Content\lightbox\.gitignore" />
     <Content Include="Content\lightbox\.jscsrc" />
@@ -567,6 +578,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806171031408_RecipeIngredientsClass.resx">
       <DependentUpon>201806171031408_RecipeIngredientsClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806200859119_unknown.resx">
+      <DependentUpon>201806200859119_unknown.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

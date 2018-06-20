@@ -13,11 +13,13 @@ namespace Delicious.Models
 
         //za sortiranje
         public string SortBy { get; set; } = "RecipeName";
+        //public string SortByCategory { get; set; }
         public string SortDirection { get; set; } = "ASC";
         //lista za grid
         public List<Recipe> Recipes { get; set; }
 
-       
+        //za ispis heading na Index
+        public string kategorija { get; set; }
 
         //za paginaciju
         public int PageSize { get; set; } = 6;
@@ -31,13 +33,14 @@ namespace Delicious.Models
         }
 
         //za sorting
-        public object GetSortingParameters(string field)
+        public object GetSortingParameters(string field)        //string kategorija
         {
             //default direction
             var direction = "ASC";
 
             //menjamo smer sortiranja ako je vec sortiran po istom parametru
-            if (SortBy == field)
+            //&& SortByCategory == kategorija
+            if (SortBy == field )
             {
                 //ako je bio asc bice desc i obratno
                 direction = SortDirection == "ASC" ? "DESC" : "ASC";
@@ -47,6 +50,7 @@ namespace Delicious.Models
             return new
             {
                 SortBy = field,
+                //SortByCategory = kategorija,
                 SortDirection = direction,
 
                 Query = Query,
@@ -60,6 +64,7 @@ namespace Delicious.Models
             return new
             {
                 SortBy,
+                //SortByCategory,
                 SortDirection,
 
                 Query,
