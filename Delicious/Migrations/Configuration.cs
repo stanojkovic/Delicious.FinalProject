@@ -1,4 +1,4 @@
-namespace Delicious.Migrations
+﻿namespace Delicious.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -9,7 +9,7 @@ namespace Delicious.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Delicious.Models.ApplicationDbContext";
         }
 
@@ -27,6 +27,21 @@ namespace Delicious.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+                context.Categories.AddOrUpdate(
+                p => p.CategoriesName,
+                 new Models.Category { CategoriesName = "Kolаci" },
+                 new Models.Category { CategoriesName = "Peciva" },
+                 new Models.Category { CategoriesName = "Zdrava Hrana" }
+                );
+
+            context.Ingredients.AddOrUpdate(
+                p => p.IngredientName,
+                 new Models.Ingredient { IngredientName = "So" },
+                 new Models.Ingredient { IngredientName = "Secer" },
+                 new Models.Ingredient { IngredientName = "Brasno" }
+                );
+
         }
     }
 }

@@ -17,15 +17,15 @@ namespace Delicious.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public object IngredientName { get; private set; }
+        //public object IngredientName { get; private set; }
 
         // GET: Recipes
         public ActionResult Index(RecipeGridViewModel viewModel, string kategorija)
         {
-            if (Request.HttpMethod == "POST")
-            {
-                viewModel.Page = 1;
-            }
+            //if (Request.HttpMethod == "POST")
+            //{
+            //    viewModel.Page = 1;
+            //}
 
             IQueryable<Recipe> recipes = db.Recipes;
 
@@ -76,8 +76,24 @@ namespace Delicious.Controllers
         public ActionResult Create()
         {
             SetCategory();
-            SetIngredients();
-            return View();
+            //SetIngredients();
+
+            var allIngredients = db.Ingredients.ToList();
+            var recipeIngredientList = new List<RecipeIngredient>();
+
+            // ekvivalentno allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
+            foreach (var item in allIngredients)
+            {
+                recipeIngredientList.Add(new RecipeIngredient() { Ingredient = item });
+            }
+
+            var model = new Recipe()
+            {
+                // napravi mi listu RecipeIngredient objekata
+                Ingredients = recipeIngredientList // allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
+            };
+
+            return View(model);
         }
 
         // POST: Recipes/Create
@@ -106,41 +122,64 @@ namespace Delicious.Controllers
         //string[] IngredientNames, ICollection<Ingredient> ingredientId, FormCollection collection
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Recipe recipe, int categoryId , int[] IngredientIds, HttpPostedFileBase img) //ICollection<Ingredient> IngredientNames
+        public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img) //ICollection<Ingredient> IngredientNames
         {
             if (ModelState.IsValid)
             {
-                //snimanje u bazu Category
-                //recipe.Category = db.Categories.Find(recipe.Category.Id);
-                recipe.Category = db.Categories.Find(categoryId);
+                ////snimanje u bazu Category
+                ////recipe.Category = db.Categories.Find(recipe.Category.Id);
+                //recipe.Category = db.Categories.Find(categoryId);
 
 
-                //snimanje u bazu Ingredients
+                ////snimanje u bazu Ingredients
 
-                //if (IngredientNames != null)
-                //{
-                //    recipe.Ingredients = db.Ingredients.Where(x => IngredientNames.Contains(x.IngredientName)).ToList();
-                //}
+                ////if (IngredientNames != null)
+                ////{
+                ////    recipe.Ingredients = db.Ingredients.Where(x => IngredientNames.Contains(x.IngredientName)).ToList();
+                ////}
 
-                //recipe.Ingredients = db.Ingredients.Find(IngredientIds) as ICollection<Ingredient>;
-                //recipe.Ingredients = (ICollection<Ingredient>)db.Ingredients.Find(IngredientNames);
+                ////recipe.Ingredients = db.Ingredients.Where(i => IngredientIds.Contains(i.Id)).ToList().Select(i => new RecipeIngredient() { Ingredient = i, Quantity = 10 }).ToList();
+                ////recipe.Ingredients = (ICollection<Ingredient>)db.Ingredients.Find(IngredientIds);
 
+                //recipe.InputDate = DateTime.Now;
+                //recipe.Id = Guid.NewGuid();
 
-                recipe.InputDate = DateTime.Now;
-                recipe.Id = Guid.NewGuid();
-                db.Recipes.Add(recipe);
-                
+                var selectedRecipeIngredients = formRecipeData.Ingredients.Where(x => x.Selected);
+
+                var recipeForDB = new Recipe()
+                {
+                    InputDate = DateTime.Now,
+                    Category = db.Categories.Find(formRecipeData.Category.Id),
+                    Description = formRecipeData.Description,
+                    RecipeName = formRecipeData.RecipeName
+                };
+
+                db.Recipes.Add(recipeForDB);
                 db.SaveChanges();
-                SaveImage(recipe, img);
+
+                recipeForDB.Ingredients = selectedRecipeIngredients.Select(ri =>
+                                               new RecipeIngredient()
+                                               {
+                                                   Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
+                                                   Quantity = ri.Quantity,
+                                                   Recipe = recipeForDB
+                                               }
+                                           ).ToList();
+
+
+                db.SaveChanges();
+
+
+
+                SaveImage(recipeForDB, img);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-                
+
             }
 
-                  
             SetCategory();
-            SetIngredients();
-            return View(recipe);
+            //SetIngredients();
+            return View(formRecipeData);
         }
 
         // GET: Recipes/Edit/5
@@ -188,7 +227,7 @@ namespace Delicious.Controllers
             {
                 //nadji proizvod iz baze
                 var recipeBase = db.Recipes.Find(recipeForm.Id);
-                TryUpdateModel(recipeBase, new string[] { "RecipeName", "Description", "Category", "Ingredients"});
+                TryUpdateModel(recipeBase, new string[] { "RecipeName", "Description", "Category", "Ingredients" });
                 recipeBase.Category = db.Categories.Find(categoryId);
                 recipeForm.InputDate = DateTime.Now;
                 //recipe.Ingredients.Clear();
@@ -206,10 +245,10 @@ namespace Delicious.Controllers
 
                 return RedirectToAction("Index");
             }
-           
+
             SetCategory();
             SetIngredients();
-            return View(recipeForm); 
+            return View(recipeForm);
         }
 
 
@@ -243,7 +282,6 @@ namespace Delicious.Controllers
         {
             if (img != null)
             {
-                //recipe.ImageName = img.FileName;
                 recipe.ImageName = Path.GetFileName(img.FileName);
                 var imagePath = Server.MapPath($"~/Content/img/{recipe.ImageNameToShow}");
                 img.SaveAs(imagePath);
@@ -276,8 +314,8 @@ namespace Delicious.Controllers
         //    var item = db.Recipes.Find(id);
         //    var ingredients = db.Ingredients.Where(x => IngredientsIds.Contains(x.Id)).ToList();
 
-            
-           
+
+
 
         //}
     }

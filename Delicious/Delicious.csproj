@@ -212,38 +212,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806121151354_InitialCreate.cs" />
-    <Compile Include="Migrations\201806121151354_InitialCreate.Designer.cs">
-      <DependentUpon>201806121151354_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806121248221_Initial.cs" />
-    <Compile Include="Migrations\201806121248221_Initial.Designer.cs">
-      <DependentUpon>201806121248221_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806131703535_ChangeDateTime.cs" />
-    <Compile Include="Migrations\201806131703535_ChangeDateTime.Designer.cs">
-      <DependentUpon>201806131703535_ChangeDateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806141115404_ChangeIdtoINT.cs" />
-    <Compile Include="Migrations\201806141115404_ChangeIdtoINT.Designer.cs">
-      <DependentUpon>201806141115404_ChangeIdtoINT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806141600219_ChangeIDIngredientsToINT.cs" />
-    <Compile Include="Migrations\201806141600219_ChangeIDIngredientsToINT.Designer.cs">
-      <DependentUpon>201806141600219_ChangeIDIngredientsToINT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806141608066_ChangePlaceQuantity.cs" />
-    <Compile Include="Migrations\201806141608066_ChangePlaceQuantity.Designer.cs">
-      <DependentUpon>201806141608066_ChangePlaceQuantity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806171031408_RecipeIngredientsClass.cs" />
-    <Compile Include="Migrations\201806171031408_RecipeIngredientsClass.Designer.cs">
-      <DependentUpon>201806171031408_RecipeIngredientsClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806200859119_unknown.cs" />
-    <Compile Include="Migrations\201806200859119_unknown.Designer.cs">
-      <DependentUpon>201806200859119_unknown.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -286,6 +254,8 @@
     <Content Include="Content\img\Cake05.jpg" />
     <Content Include="Content\img\Cake06.jpg" />
     <Content Include="Content\img\Cake07.jpg" />
+    <Content Include="Content\img\Error.JPG" />
+    <Content Include="Content\img\Error3.JPG" />
     <Content Include="Content\img\no_image.png" />
     <Content Include="Content\img\peciva.jpg" />
     <Content Include="Content\img\zdrava01.jpg" />
@@ -556,32 +526,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806121151354_InitialCreate.resx">
-      <DependentUpon>201806121151354_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806121248221_Initial.resx">
-      <DependentUpon>201806121248221_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806131703535_ChangeDateTime.resx">
-      <DependentUpon>201806131703535_ChangeDateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806141115404_ChangeIdtoINT.resx">
-      <DependentUpon>201806141115404_ChangeIdtoINT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806141600219_ChangeIDIngredientsToINT.resx">
-      <DependentUpon>201806141600219_ChangeIDIngredientsToINT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806141608066_ChangePlaceQuantity.resx">
-      <DependentUpon>201806141608066_ChangePlaceQuantity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806171031408_RecipeIngredientsClass.resx">
-      <DependentUpon>201806171031408_RecipeIngredientsClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806200859119_unknown.resx">
-      <DependentUpon>201806200859119_unknown.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

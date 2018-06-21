@@ -78,12 +78,16 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-
-                            @foreach (var ingredient in ViewBag.Ingredients)
-            {
-
-                <input type="checkbox" name="IngredientIds" value="@ingredient.Id"> @Html.Raw("&nbsp;")@ingredient.IngredientName<br>
-}
+                            @for (int i = 0; i < Model.Ingredients.Count; i++)
+                            {
+                                @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.Id", i), Model.Ingredients.ElementAt(i).Ingredient.Id)
+                                //ovo sluzi samo da prosledi ime do servera za slucaj da treba opet da se prikaze forma usled greske
+                                @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.IngredientName", i), Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                                @Html.CheckBox(string.Format("Ingredients[{0}].Selected", i), Model.Ingredients.ElementAt(i).Selected)
+                                @Html.Label(Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                                @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity)
+                                <br />
+                            }
                         </div>
                     </div>
                 </div>

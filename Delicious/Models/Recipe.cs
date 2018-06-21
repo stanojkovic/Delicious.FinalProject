@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,10 @@ namespace Delicious.Models
 {
     public class Recipe
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+
         [Display(Name ="Naziv")]
         public string RecipeName { get; set; }
         [Display(Name = "Opis")]
@@ -27,9 +31,10 @@ namespace Delicious.Models
 
         public DateTime InputDate { get; set; }
         
+        [Required]
         public Category Category { get; set; }
 
 
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
     }
 }
