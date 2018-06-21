@@ -16,9 +16,10 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-white" })</li>
+        <span class="text-white"><i class="fa fa-user" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+        <li>@Html.ActionLink("Registracija", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-white" })</li>
         <li>@Html.Raw("&nbsp;&nbsp;&nbsp;&nbsp;")</li>
 
-        <li >@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "text-white" })</li>
+        <li>@Html.ActionLink("Ulogujte se !", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "text-white" })</li>
     </ul>
 }

@@ -24,3 +24,8 @@ select,
 textarea {
     max-width: 380px;
 }
+
+.text-faded {
+    color: white;
+    text-shadow: 2px 1px 3px #000;
+}
