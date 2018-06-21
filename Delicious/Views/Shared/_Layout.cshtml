@@ -44,26 +44,27 @@
                 <div class="col-md-4 mx-auto">
                     <!-- Content -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-                    <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <p>Spremanje kolača i torti je prava umestnost za one koje to vole, a slavlje za one koji su ljubitelji slatkiša.</p>
+                    <p>Pogledajte i postanite pravi majstor svoje kuće poslastičarnice !</p>
                 </div>
                 <!-- Grid column -->
                 <hr class="clearfix w-100 d-md-none">
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
                     <!-- Links -->
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Srodni sajtovi</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">Link 1</a>
+                            <a href="http://www.receptizakolace.rs/">Recepti za kolače</a>
                         </li>
                         <li>
-                            <a href="#!">Link 2</a>
+                            <a href="http://www.kolaci-beograd.rs/">Kolači-Beograd</a>
                         </li>
                         <li>
-                            <a href="#!">Link 3</a>
+                            <a href="https://tortekolaci.com/">Torte i Kolači</a>
                         </li>
                         <li>
-                            <a href="#!">Link 4</a>
+                            <a href="http://www.recepti.com/">Recepti</a>
                         </li>
                     </ul>
                 </div>
@@ -72,20 +73,20 @@
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
                     <!-- Links -->
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Srodni sajtovi</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!">Link 1</a>
+                            <a href="http://www.serpica.net/">Šeprica</a>
                         </li>
                         <li>
-                            <a href="#!">Link 2</a>
+                            <a href="http://www.poslasticarnicapunto.com/">Poslastičarnica</a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="#!">Link 3</a>
                         </li>
                         <li>
                             <a href="#!">Link 4</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
                 <!-- Grid column -->
@@ -93,20 +94,15 @@
                 <!-- Grid column -->
                 <div class="col-md-2 mx-auto">
                     <!-- Links -->
-                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Mapa sajta</h5>
                     <ul class="list-unstyled">
-                        <li>
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li>
-                            <a href="#!">Link 4</a>
-                        </li>
+
+
+
+                        <li>@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "", kategorija = "Kolaci" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </div>
                 <!-- Grid column -->
@@ -118,7 +114,7 @@
         <!-- Call to action -->
         <ul class="list-unstyled list-inline text-center py-2">
             <li class="list-inline-item">
-                <h5 class="mb-1">Register for free</h5>
+                <h5 class="mb-1">Registrujte se !</h5>
             </li>
             <li class="list-inline-item">
                 @Html.ActionLink("Sign up!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-white btn btn-danger btn-rounded" })
