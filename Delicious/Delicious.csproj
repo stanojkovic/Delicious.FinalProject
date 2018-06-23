@@ -212,6 +212,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806231337576_AddUnitEnum.cs" />
+    <Compile Include="Migrations\201806231337576_AddUnitEnum.Designer.cs">
+      <DependentUpon>201806231337576_AddUnitEnum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -226,9 +230,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Delicious-20180608093541.mdf" />
-    <Content Include="App_Data\aspnet-Delicious-20180608093541_log.ldf">
-      <DependentUpon>aspnet-Delicious-20180608093541.mdf</DependentUpon>
+    <Content Include="App_Data\aspnet-Delicious-20180608093549.mdf" />
+    <Content Include="App_Data\aspnet-Delicious-20180608093549_log.ldf">
+      <DependentUpon>aspnet-Delicious-20180608093549.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -241,28 +245,7 @@
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome\HELP-US-OUT.txt" />
-    <Content Include="Content\img\bakery01.jpg" />
-    <Content Include="Content\img\bakery02.jpg" />
-    <Content Include="Content\img\bakery03.jpg" />
-    <Content Include="Content\img\bakery04.jpg" />
-    <Content Include="Content\img\BluePattern.jpg" />
-    <Content Include="Content\img\cake.png" />
-    <Content Include="Content\img\Cake01.jpg" />
-    <Content Include="Content\img\Cake02.jpg" />
-    <Content Include="Content\img\Cake03.jpg" />
-    <Content Include="Content\img\Cake04.jpg" />
-    <Content Include="Content\img\Cake05.jpg" />
-    <Content Include="Content\img\Cake06.jpg" />
-    <Content Include="Content\img\Cake07.jpg" />
-    <Content Include="Content\img\Error.JPG" />
-    <Content Include="Content\img\Error3.JPG" />
     <Content Include="Content\img\no_image.png" />
-    <Content Include="Content\img\peciva.jpg" />
-    <Content Include="Content\img\zdrava01.jpg" />
-    <Content Include="Content\img\zdrava02.jpg" />
-    <Content Include="Content\img\zdrava03.jpg" />
-    <Content Include="Content\img\zdrava04.jpg" />
-    <Content Include="Content\img\zdrava05.jpg" />
     <Content Include="Content\lightbox\.editorconfig" />
     <Content Include="Content\lightbox\.gitignore" />
     <Content Include="Content\lightbox\.jscsrc" />
@@ -517,7 +500,11 @@
     <Content Include="Views\Ingredients\Edit.cshtml" />
     <Content Include="Views\Ingredients\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806231337576_AddUnitEnum.resx">
+      <DependentUpon>201806231337576_AddUnitEnum.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

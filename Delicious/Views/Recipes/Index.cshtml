@@ -4,10 +4,10 @@
 
 @model Delicious.Models.RecipeGridViewModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -19,17 +19,17 @@
 <div class="container">
     <div class="row mt-4">
         <div class="col-lg-2">
-            @if (@Model.kategorija == "Kolači")
+            @if (@Model.kategorija == "Kolaci")
             {
-                        <h3 class="text-primary"><strong>Kolači</strong></h3>
+                <h3 class="text-primary"><strong>Kolači</strong></h3>
             }
             else if (@Model.kategorija == "Peciva")
             {
-                        <h3 class="text-primary"><strong>Peciva</strong></h3>
+                <h3 class="text-primary"><strong>Peciva</strong></h3>
             }
             else if (@Model.kategorija == "Zdrava Hrana")
             {
-                        <h4 class="text-primary"><strong>Zdrava Hrana</strong></h4>
+                <h4 class="text-primary"><strong>Zdrava Hrana</strong></h4>
             }
             else
             {
@@ -39,30 +39,24 @@
 
 
         </div>
-        <div class="col-lg-2">
-            @*<h3 class="text-primary">Укупно: @Model.Articles.Count</h3>*@     @*dodaj Articles*@
-            @*<h3 class="text-primary badge badge-warning"> <i>Укупно:&nbsp;&nbsp;@Model.Count</i></h3>*@
 
+        <div class="col-lg-2">
             <button type="button" class="btn btn-primary">
                 Укупно:&nbsp;&nbsp; <span class="badge badge-light">@Model.Count</span>
                 <span class="sr-only">unread messages</span>
             </button>
-
         </div>
-
 
         <div class="col-lg-6">
             @using (@Html.BeginForm())
             {
-
-
                 <div class="row">
                     <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
                     <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
                 </div>
-
             }
         </div>
+
         <div class="col-lg-2 ">
             <p>
                 <button class="btn btn-amber">
@@ -75,8 +69,9 @@
 </div>
 
 
-@Html.ActionLink("Sortiraj po nazivu", "Index", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-warning" })
-@*@Html.ActionLink("Sortiraj po nazivu", "Index", "Recipes", Model.GetSortingParameters("RecipeName"), new { area = "", kategorija = "Kolači" }, new { @class = "nav-link" })*@
+    @Html.ActionLink("Sortiraj po nazivu", "Index", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-warning btn btn-outline-warning text-default" })
+
+
 <hr>
 
 
@@ -94,17 +89,25 @@
 
 
             @*<img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">*@
-            <br>
-            <h4 class="text-danger">@item.RecipeName</h4>
+            @Html.Raw("</br></br>")
+
+            <p class="text-info" style="font-size:26px;">
+                <span class="fa fa-pencil-square-o"></span>
+                @item.RecipeName
+            </p>
             @*@Html.DisplayNameFor(model => model.RecipeName)*@
             @*@Html.Raw(":&nbsp;")*@
             @*@Html.DisplayFor(modelItem => item.RecipeName)*@
+            @*@Html.Raw("</br>")*@
+
+            <p class="text-info">
+                <span class="fa fa-calendar-plus-o"></span>
+                @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                @item.InputDate
+            </p>
             @Html.Raw("</br>")
 
-            @item.InputDate
-            @Html.Raw("</br>")
 
-           
             @*@Html.Raw(":&nbsp;")*@
             @*new { @value = System.DateTime.Now }*@
             @*@Html.DisplayFor(modelItem => item.InputDate)*@
@@ -119,8 +122,12 @@
             <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
             @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
             @Html.Raw("&nbsp;")
-            <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-            @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+            @if (User.IsInRole(RolesConfig.ADMIN))
+                {
+        <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+                }
+
             <hr>
 
         </div>
@@ -149,9 +156,9 @@
 </div>
 @section Scripts
 {
-    <script>
+    @*<script>
         $('.delete-dugme').on('click', function () {
-            return confirm("Da li ste sigurni ?");
-        })
-    </script>
+            return confirm("Are you sure?");
+        });
+    </script>*@
 }

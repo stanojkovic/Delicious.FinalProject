@@ -7,18 +7,18 @@ namespace Delicious.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeDateTime : IMigrationMetadata
+    public sealed partial class AddUnitEnum : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeDateTime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUnitEnum));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806131703535_ChangeDateTime"; }
+            get { return "201806231337576_AddUnitEnum"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

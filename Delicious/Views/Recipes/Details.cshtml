@@ -6,83 +6,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container ">
+<div class="container  mb-5">
     <div class="row mt-5">
         <div class="col-lg-8 offset-lg-2">
             <span class="fa fa-th-list fa-4x"></span>
-            <h2 class="display-4">Detalji</h2>
+            <h2 class="display-4 text-danger">@Model.RecipeName</h2>
             <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.RecipeName)
-                </dt>
-                <dd style="font-size:30px;" class="text-danger">
-                    @Html.DisplayFor(model => model.RecipeName)
-                </dd>
-                <dt>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-lg-4 offset-lg-2">
+            <a class="example-image-link" href="@string.Format("/Content/img/{0}", Model.ImageNameToShow)" data-lightbox="example-set">
+                <img class="example-image img-thumbnail mb-4" src="@string.Format("/Content/img/{0}", Model.ImageNameToShow)" style="width:200px;">
+            </a>
+        </div>
+
+        <div class="col-lg-6">
+          
+          <label>Sastojci:</label>
+            <br>
+            @foreach (var i in Model.Ingredients)
+                {
+           
+              
+                    @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
+                    @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                    @Html.DisplayFor(modelItem => i.Quantity)
+                <br>
+               
+                }
+
+            <dl class="dl-horizontal" style="color:#000;">
+
+
+                <dt style="font-size:30px;">
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
-                <dd style="font-size:20px; color:#34495e;">
+                <dd style="font-size:20px;">
                     @Html.DisplayFor(model => model.Description)
                 </dd>
-                @*<dt>
-                        @Html.DisplayNameFor(model => model.Category.CategoriesName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Category.CategoriesName)
-                    </dd>*@
-                @*<dt>
-                        @Html.DisplayNameFor(model => model.ImageName)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.ImageName)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.InputDate)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.InputDate)
-                    </dd>*@
             </dl>
-
-            @*<div class="col-lg-4">
-                                @foreach (var item in Model.Recipes)
-                    {
-                            <img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                                }*@
-
         </div>
     </div>
 </div>
 
-<div class="container ">
-    <div class="row  mt-3 justify-content-lg-center">
-        <div class=" col-lg-3 offset-lg-1">
-
-            @Html.ActionLink("Kolači", "Index", "Recipes", new { area = "", kategorija = "Kolači" }, new { @class = "nav-link btn btn-warning col-lg-4" })
-          
-
-        </div>
-        <div class="col-md-3">
-
-         
-            @Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link  btn btn-warning col-lg-4" })
-           
-
-        </div>
-        <div class="col-md-3">
-
-          
-            @Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link  btn btn-warning col-lg-7" })
-
-        </div>
-    </div>
-</div>
-<p ml-5>
-
-
-</p>

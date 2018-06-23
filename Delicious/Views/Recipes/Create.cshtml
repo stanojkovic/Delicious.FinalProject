@@ -42,10 +42,10 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Category, htmlAttributes: new { @class = "control-label col-md-2 text-white" })
+                        @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2 text-white" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Category.Id, new SelectList(ViewBag.Categories, "Id", "CategoriesName"), new { @class = " text-success col-md-12" })
-                            @Html.ValidationMessageFor(m => m.Category)
+                            @Html.DropDownListFor(model => model.Category.Id, new SelectList(ViewBag.Categories, "Id", "CategoriesName"), new { @class = " text-success col-md-12" })
+                            @Html.ValidationMessageFor(model => model.Category)
                         </div>
                     </div>
 
@@ -55,19 +55,10 @@
                             <input name="img" type="file" accept=".jpg, .png, .gif">
                         </div>
                     </div>
-
-
-
-
-
-
-                    @*<label>Slika:</label><br>
-        <input name="img" type="file" accept=".jpg, .png, .gif">*@
                     <hr>
-
                 </div>
-
             </div>
+
             <div class="col-6">
                 <div class="form-horizontal">
                     <hr />
@@ -77,19 +68,33 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2 " })
                         <div class="col-md-10">
-                            @for (int i = 0; i < Model.Ingredients.Count; i++)
-                            {
-                                @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.Id", i), Model.Ingredients.ElementAt(i).Ingredient.Id)
-                                //ovo sluzi samo da prosledi ime do servera za slucaj da treba opet da se prikaze forma usled greske
-                                @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.IngredientName", i), Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                            <div class="row">
+                                @for (int i = 0; i < Model.Ingredients.Count; i++)
+    {
+
+
+                            @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.Id", i), Model.Ingredients.ElementAt(i).Ingredient.Id)
+//ovo sluzi samo da prosledi ime do servera za slucaj da treba opet da se prikaze forma usled greske
+                            @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.IngredientName", i), Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                            <div class="col-lg-1">
                                 @Html.CheckBox(string.Format("Ingredients[{0}].Selected", i), Model.Ingredients.ElementAt(i).Selected)
+                            </div>
+                            <div class="col-lg-5">
                                 @Html.Label(Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                            </div>
+                            <div class="col-lg-6">
                                 @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity)
-                                <br />
-                            }
+                            </div>
+                            @*@Html.EnumDropDownListFor(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).UnitOfMeasure as RecipeIngredient.Unit)
+                            @Html.EnumDropDownListFor(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).UnitOfMeasure)*@
+
+                            <br />
+
+}
+                                <div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -99,6 +104,8 @@
             </div>
         </div>
 
+    </div>
+    </div>
     </div>
 }
 
@@ -115,10 +122,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @*<script>
-            $(document).ready(function () {
-                $('select').material_select();
-            });
-        </script>*@
 }
 

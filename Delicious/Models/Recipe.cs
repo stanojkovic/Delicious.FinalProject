@@ -15,7 +15,7 @@ namespace Delicious.Models
 
         [Display(Name ="Naziv")]
         public string RecipeName { get; set; }
-        [Display(Name = "Opis")]
+        [Display(Name = "Nacin pripreme")]
         public string Description { get; set; }
         public string ImageName { get; set; }
 
@@ -32,7 +32,7 @@ namespace Delicious.Models
         public DateTime InputDate { get; set; }
         
         [Required]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
 
         public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
