@@ -85,8 +85,14 @@
                             <div class="col-lg-6">
                                 @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity)
                             </div>
+
+                            @*@foreach (var model in Model.Ingredients)
+{
+                            @Html.EnumDropDownListFor(m => model.UnitOfMeasure)
+}*@
+
                             @*@Html.EnumDropDownListFor(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).UnitOfMeasure as RecipeIngredient.Unit)
-                            @Html.EnumDropDownListFor(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).UnitOfMeasure)*@
+    @Html.EnumDropDownListFor(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).UnitOfMeasure)*@
 
                             <br />
 
@@ -113,7 +119,7 @@
     <div class="row text-md-right mt-3">
         <div class="col-lg-12">
             <span class="fa fa-arrow-circle-left"></span>
-            @Html.ActionLink("Nazad na listu recepata", "Index", new { @class = " " })
+            @Html.ActionLink("Nazad na listu recepata", "Index", new { @class = " " }, new { ViewBag.Kategorija})
         </div>
     </div>
 </div>

@@ -115,20 +115,22 @@
             @*@item.Category.CategoriesName*@
             @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
 
-
-            <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-            @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
-            @Html.Raw("&nbsp;")
-            <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-            @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
-            @Html.Raw("&nbsp;")
             @if (User.IsInRole(RolesConfig.ADMIN))
-                {
+            {
+        <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
+        @Html.Raw("&nbsp;")
+            }
+        <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+        @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
+        @Html.Raw("&nbsp;")
+        @if (User.IsInRole(RolesConfig.ADMIN))
+{
         <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
         @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
-                }
+}
 
-            <hr>
+        <hr>
 
         </div>
         }

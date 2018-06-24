@@ -13,11 +13,13 @@ using System.Linq.Dynamic;
 
 namespace Delicious.Controllers
 {
+    [Authorize]
     public class RecipesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Recipes
+        [AllowAnonymous]
         public ActionResult Index(RecipeGridViewModel viewModel, string kategorija)
         {
             IQueryable<Recipe> recipes = db.Recipes;
@@ -25,6 +27,7 @@ namespace Delicious.Controllers
             if (kategorija != null)
             {
                 recipes = recipes.Where(r => r.Category.CategoriesName == kategorija);
+                //da vraca posle create i edit u odgovarajucu kategoriju
                 ViewBag.Kategorija = kategorija;
             }
 
@@ -65,6 +68,7 @@ namespace Delicious.Controllers
         }
 
         // GET: Recipes/Create
+        [Authorize(Roles = RolesConfig.ADMIN)]
         public ActionResult Create()
         {
             SetCategory();
@@ -90,6 +94,7 @@ namespace Delicious.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RolesConfig.ADMIN)]
         public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
@@ -134,6 +139,7 @@ namespace Delicious.Controllers
         }
 
         // GET: Recipes/Edit/5
+        [Authorize(Roles = RolesConfig.ADMIN)]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -168,6 +174,7 @@ namespace Delicious.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RolesConfig.ADMIN)]
         public ActionResult Edit(Recipe recipeForm, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)

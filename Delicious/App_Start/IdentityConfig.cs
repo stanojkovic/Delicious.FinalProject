@@ -23,7 +23,7 @@ namespace Delicious
             //return Task.FromResult(0);
 
             return new SmtpClient().SendMailAsync(
-                "vladimirstanojevic85@gmail.com",
+                "sasa.misterno@gmail.com",
                 message.Destination,
                 message.Subject,
                 message.Body
