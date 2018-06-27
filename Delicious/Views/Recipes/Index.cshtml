@@ -115,7 +115,7 @@
             @*@item.Category.CategoriesName*@
             @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
 
-            @if (User.IsInRole(RolesConfig.ADMIN))
+            @if (User.IsInRole(RolesConfig.USER))
             {
         <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
         @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })

@@ -68,7 +68,7 @@ namespace Delicious.Controllers
         }
 
         // GET: Recipes/Create
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Create()
         {
             SetCategory();
@@ -94,7 +94,7 @@ namespace Delicious.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
@@ -138,15 +138,36 @@ namespace Delicious.Controllers
             return View(formRecipeData);
         }
 
+        //private bool EditAcessNotAuthorized(Recipe recipe)
+        //{
+        //    return User.IsInRole(RolesConfig.USER) ? false : recipe.User.UserName != User.Identity.Name;
+        //}
+
+
+
+
+
         // GET: Recipes/Edit/5
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Edit(Guid? id)
         {
+            Recipe recipe = db.Recipes.Find(id);
+            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            //var viewForbbiden = recipe.User.UserName != User.Identity.Name;
+
+            //if (viewForbbiden)
+            //{
+            //    return HttpNotFound();
+            //}
+
+          
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recipe recipe = db.Recipes.Find(id);
+           
             if (recipe == null)
             {
                 return HttpNotFound();
@@ -169,12 +190,14 @@ namespace Delicious.Controllers
 
             SetCategory();
             //SetIngredients();
+
+           
             return View(recipe);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Edit(Recipe recipeForm, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)

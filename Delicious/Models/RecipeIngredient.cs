@@ -15,7 +15,8 @@ namespace Delicious.Models
             l,
             dl,
             ml,
-            kasicica
+            kasicica,
+            komada
         }
 
         public int Id { get; set; }

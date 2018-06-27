@@ -23,19 +23,22 @@
         </div>
 
         <div class="col-lg-6">
-          
-          <label>Sastojci:</label>
+
+            <label>Sastojci:</label>
             <br>
             @foreach (var i in Model.Ingredients)
-                {
-           
-              
-                    @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
-                    @Html.Raw("&nbsp;&nbsp;&nbsp;")
-                    @Html.DisplayFor(modelItem => i.Quantity)
-                <br>
-               
-                }
+    {
+
+
+        @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
+        @Html.Raw("&nbsp;&nbsp;&nbsp;")
+        @Html.DisplayFor(modelItem => i.Quantity)
+        @Html.Raw("&nbsp;&nbsp;&nbsp;")
+        @Html.DisplayFor(modelItem => i.UnitOfMeasure)
+      
+        <br>
+
+}
 
             <dl class="dl-horizontal" style="color:#000;">
 

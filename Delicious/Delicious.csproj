@@ -209,6 +209,7 @@
     <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
+    <Compile Include="Controllers\Submission.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,6 +247,7 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome\HELP-US-OUT.txt" />
     <Content Include="Content\img\no_image.png" />
+    <Content Include="Content\img\sasa.jpg" />
     <Content Include="Content\lightbox\.editorconfig" />
     <Content Include="Content\lightbox\.gitignore" />
     <Content Include="Content\lightbox\.jscsrc" />
