@@ -62,45 +62,37 @@
             <div class="col-6">
                 <div class="form-horizontal">
                     <hr />
-                    <h4>Odaberite sastojke !</h4>
+                    <h4 class="mb-4">Odaberite sastojke !</h4>
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2 " })
                         <div class="col-md-10">
                             <div class="row">
                                 @for (int i = 0; i < Model.Ingredients.Count; i++)
-                                    {
+                                {
+                                    @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.Id", i), Model.Ingredients.ElementAt(i).Ingredient.Id)
+                                    //ovo sluzi samo da prosledi ime do servera za slucaj da treba opet da se prikaze forma usled greske
+                                    @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.IngredientName", i), Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                                    <div class="col-lg-1">
+                                        @Html.CheckBox(string.Format("Ingredients[{0}].Selected", i), Model.Ingredients.ElementAt(i).Selected)
+                                    </div>
+                                    <div class="col-lg-2">
+                                        @Html.Label(Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
+                                    </div>
+                                    <div class="col-lg-3">
+                                        @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity, new { style = "width:105px;" })
+                                    </div>
+                                    <div class="col-lg-6">
+                                        @Html.DropDownList(string.Format("Ingredients[{0}].UnitOfMeasure", i), new SelectList(Enum.GetValues(typeof(Delicious.Models.RecipeIngredient.Unit))), new { style = "height:30px;" })
+                                    </div>
 
-
-                            @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.Id", i), Model.Ingredients.ElementAt(i).Ingredient.Id)
-                                //ovo sluzi samo da prosledi ime do servera za slucaj da treba opet da se prikaze forma usled greske
-                            @Html.Hidden(string.Format("Ingredients[{0}].Ingredient.IngredientName", i), Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
-                            <div class="col-lg-1">
-                                @Html.CheckBox(string.Format("Ingredients[{0}].Selected", i), Model.Ingredients.ElementAt(i).Selected)
-                            </div>
-                            <div class="col-lg-2">
-                                @Html.Label(Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
-                            </div>
-                            <div class="col-lg-2">
-                                @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity)
-
-                            </div>
-                          
-
-                            <div class="col-lg-7">
-                                @Html.DropDownList(string.Format("Ingredients[{0}].UnitOfMeasure", i), new SelectList(Enum.GetValues(typeof(Delicious.Models.RecipeIngredient.Unit))))
-
-                                </div>
-                           
-                            <br />
-
-                                    }
-                                <div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
+                                    <br />
+                                }
+                            <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">

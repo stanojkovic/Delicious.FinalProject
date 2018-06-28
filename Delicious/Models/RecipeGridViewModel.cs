@@ -21,6 +21,8 @@ namespace Delicious.Models
         //za ispis heading na Index
         public string kategorija { get; set; }
 
+        public ApplicationUser User { get; set; }
+
         //za paginaciju
         public int PageSize { get; set; } = 6;
         public int Page { get; set; } = 1;

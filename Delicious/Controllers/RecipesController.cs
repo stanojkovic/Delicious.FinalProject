@@ -53,6 +53,7 @@ namespace Delicious.Controllers
         }
 
         // GET: Recipes/Details/5
+        [AllowAnonymous]
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -97,8 +98,11 @@ namespace Delicious.Controllers
         [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
+                var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
                 var selectedRecipeIngredients = formRecipeData.Ingredients.Where(x => x.Selected);
 
                 var recipeForDB = new Recipe()
@@ -106,7 +110,8 @@ namespace Delicious.Controllers
                     InputDate = DateTime.Now,
                     Category = db.Categories.Find(formRecipeData.Category.Id),
                     Description = formRecipeData.Description,
-                    RecipeName = formRecipeData.RecipeName
+                    RecipeName = formRecipeData.RecipeName,
+                    User = currentUser
                 };
 
                 db.Recipes.Add(recipeForDB);
@@ -117,7 +122,8 @@ namespace Delicious.Controllers
                                                {
                                                    Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
                                                    Quantity = ri.Quantity,
-                                                   Recipe = recipeForDB
+                                                   Recipe = recipeForDB,
+                                                   UnitOfMeasure = ri.UnitOfMeasure
                                                }
                                            ).ToList();
 
@@ -152,16 +158,6 @@ namespace Delicious.Controllers
         public ActionResult Edit(Guid? id)
         {
             Recipe recipe = db.Recipes.Find(id);
-            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-
-            //var viewForbbiden = recipe.User.UserName != User.Identity.Name;
-
-            //if (viewForbbiden)
-            //{
-            //    return HttpNotFound();
-            //}
-
-          
 
             if (id == null)
             {
@@ -173,25 +169,28 @@ namespace Delicious.Controllers
                 return HttpNotFound();
             }
 
-            //var allIngredients = db.Ingredients.ToList();
-            //var recipeIngredientList = new List<RecipeIngredient>();
+            //da se pored cekiranih sastojaka dodaju i necekirani iz baze
+            var allIngredients = db.Ingredients.ToList();
 
+            foreach (Ingredient item in allIngredients)
+            {
+                bool n = false;
 
-            //foreach (var item in allIngredients)
-            //{
-            //    recipeIngredientList.Add(new RecipeIngredient() { Ingredient = item });
-            //}
+                foreach (RecipeIngredient ri in recipe.Ingredients)
+                {
+                    if (ri.Ingredient.Equals(item))
+                    {
+                        n = true;
+                        break;
+                    }
+                }
 
-            //var model = new Recipe()
-            //{
-            //    // napravi mi listu RecipeIngredient objekata
-            //    Ingredients = recipeIngredientList
-            //};
+                if (!n)
+                    recipe.Ingredients.Add(new RecipeIngredient { Ingredient = item });
+            }
 
             SetCategory();
-            //SetIngredients();
 
-           
             return View(recipe);
         }
 
@@ -300,11 +299,58 @@ namespace Delicious.Controllers
             ViewBag.Categories = db.Categories.ToList();
         }
 
-        public void SetIngredients()
+        //za prikaz recepata koje je kreirao ulogovani korisnik
+        [Authorize(Roles = RolesConfig.USER)]
+        public ActionResult MyRecipes(RecipeGridViewModel viewModel)
         {
-            ViewBag.Ingredients = db.Ingredients.ToList();
+            IQueryable<Recipe> recipes = db.Recipes;
+
+            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+            if (User.IsInRole(RolesConfig.USER))
+            {
+                recipes = recipes.Where(r => r.User.UserName == User.Identity.Name);
+            }
+
+            if (viewModel.Query != null)
+            {
+                recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
+            }
+
+            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
+            if (viewModel.SortBy != null && viewModel.SortDirection != null)
+            {
+                recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));
+            }
+
+            viewModel.Count = recipes.Count();
+            recipes = recipes.Skip((viewModel.Page - 1) * viewModel.PageSize).Take(viewModel.PageSize);
+
+            //vrati podatke iz baze
+            viewModel.Recipes = recipes.ToList();
+
+
+            return View("MyRecipes", viewModel);
         }
 
+        //za ostavljenja komentara
+        public ActionResult LeaveComment(Guid recipeId, string comment)
+        {
+            var commentedRecipe = db.Recipes.Find(recipeId);
+            var user = db.Users.First(u => u.UserName == User.Identity.Name);
+
+            var commentForDB = new Comment()
+            {
+                CommentContent = comment,
+                Recipe = commentedRecipe,
+                User = user
+            };
+
+            db.Comments.Add(commentForDB);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = recipeId });
+        }
 
         protected override void Dispose(bool disposing)
         {

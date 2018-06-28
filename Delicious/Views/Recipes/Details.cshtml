@@ -1,6 +1,6 @@
 ﻿@using Delicious.Models
 @model Delicious.Models.Recipe
-@*@model Delicious.Models.RecipeGridViewModel*@
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,18 +27,15 @@
             <label>Sastojci:</label>
             <br>
             @foreach (var i in Model.Ingredients)
-    {
+            {
+                @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
+                @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                @Html.DisplayFor(modelItem => i.Quantity)
+                @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                @Html.DisplayFor(modelItem => i.UnitOfMeasure)
 
-
-        @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
-        @Html.Raw("&nbsp;&nbsp;&nbsp;")
-        @Html.DisplayFor(modelItem => i.Quantity)
-        @Html.Raw("&nbsp;&nbsp;&nbsp;")
-        @Html.DisplayFor(modelItem => i.UnitOfMeasure)
-      
-        <br>
-
-}
+                <br>
+            }
 
             <dl class="dl-horizontal" style="color:#000;">
 
@@ -50,6 +47,50 @@
                     @Html.DisplayFor(model => model.Description)
                 </dd>
             </dl>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @*@Html.ActionLink("Ostavite komentar", "Create", "Comments", new { recipeId = Model.Id})*@
+
+        <div>
+            @using (Html.BeginForm("LeaveComment", "Recipes", FormMethod.Post))
+            {
+                <input name="recipeId" type="hidden" value="@Model.Id">
+                <input name="comment" type="text" value="">
+                <input type="submit" value="Ostavite komentar" class="btn" />
+            }
+        </div>
+
+        <div>
+            @foreach (var comment in Model.Comments)
+            {
+                @Html.DisplayFor(modelItem => comment.CommentContent)
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div style="float:right;">
+            @*da bismo se vratili na prethodnu stranu*@
+            @if (Model.Category.CategoriesName == "Kolaci")
+            {
+                ViewBag.Kategorija = "Kolaci";
+            }
+            else if (Model.Category.CategoriesName == "Peciva")
+            {
+                ViewBag.Kategorija = "Peciva";
+            }
+            else
+            {
+                ViewBag.Kategorija = "Zdrava Hrana";
+            }
+
+            @Html.ActionLink("Nazad", "Index", new { ViewBag.Kategorija })
         </div>
     </div>
 </div>
