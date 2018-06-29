@@ -21,17 +21,10 @@
             {
                 <h3 class="text-primary"><strong>Peciva</strong></h3>
             }
-            else if (@Model.kategorija == "Zdrava Hrana")
+            else
             {
                 <h4 class="text-primary"><strong>Zdrava Hrana</strong></h4>
             }
-            else
-            {
-            }
-
-
-
-
         </div>
 
         <div class="col-lg-2">
@@ -53,10 +46,10 @@
 
         <div class="col-lg-2 ">
             <p>
-                <button class="btn btn-amber">
+                
                     <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                    @Html.ActionLink("Dodaj recept", "Create")
-                </button>
+                    @Html.ActionLink("Dodaj recept", "Create", new { @class = " text-yellow btn btn-info btn-md" })
+                
             </p>
         </div>
     </div>
@@ -77,8 +70,8 @@
 
 
 
-            <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
-                <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+            <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
+                <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
             </a>
 
 
@@ -109,7 +102,7 @@
             @*@item.Category.CategoriesName*@
             @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
 
-            @if (User.IsInRole(RolesConfig.USER))
+            @if (User.IsInRole(RolesConfig.ADMIN))
             {
                 <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
                 @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
@@ -121,7 +114,7 @@
             @if (User.IsInRole(RolesConfig.ADMIN))
             {
                 <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-danger btn-md" })
             }
 
             <hr>
