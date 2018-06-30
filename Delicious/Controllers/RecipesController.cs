@@ -144,15 +144,6 @@ namespace Delicious.Controllers
             return View(formRecipeData);
         }
 
-        //private bool EditAcessNotAuthorized(Recipe recipe)
-        //{
-        //    return User.IsInRole(RolesConfig.USER) ? false : recipe.User.UserName != User.Identity.Name;
-        //}
-
-
-
-
-
         // GET: Recipes/Edit/5
         [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Edit(Guid? id)
