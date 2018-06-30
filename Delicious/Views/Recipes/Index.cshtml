@@ -38,7 +38,7 @@
             @using (@Html.BeginForm())
             {
                 <div class="row">
-                    <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
+                    <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
                     <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
                 </div>
             }
