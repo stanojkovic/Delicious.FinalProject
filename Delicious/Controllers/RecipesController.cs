@@ -226,7 +226,7 @@ namespace Delicious.Controllers
                 SaveImage(recipeBase, img);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", new { kategorija });
+                return RedirectToAction("MyRecipes", new { kategorija });
             }
 
             SetCategory();
@@ -343,7 +343,8 @@ namespace Delicious.Controllers
             {
                 CommentContent = comment,
                 Recipe = commentedRecipe,
-                User = user
+                User = user,
+                CommentInputDate = DateTime.Now
             };
 
             db.Comments.Add(commentForDB);

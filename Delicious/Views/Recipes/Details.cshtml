@@ -26,14 +26,13 @@
 
             <label>Sastojci:</label>
             <br>
-            @foreach (var i in Model.Ingredients)
+            @foreach (var i in Model.Ingredients.Where(i => i.Quantity > 0))
             {
                 @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
                 @Html.Raw("&nbsp;&nbsp;&nbsp;")
                 @Html.DisplayFor(modelItem => i.Quantity)
                 @Html.Raw("&nbsp;&nbsp;&nbsp;")
                 @Html.DisplayFor(modelItem => i.UnitOfMeasure)
-
                 <br>
             }
 
