@@ -205,7 +205,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -504,11 +503,6 @@
     <Content Include="Views\Ingredients\Edit.cshtml" />
     <Content Include="Views\Ingredients\Index.cshtml" />
     <Content Include="Views\Recipes\MyRecipes.cshtml" />
-    <Content Include="Views\Comments\Create.cshtml" />
-    <Content Include="Views\Comments\Delete.cshtml" />
-    <Content Include="Views\Comments\Details.cshtml" />
-    <Content Include="Views\Comments\Edit.cshtml" />
-    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806231337576_AddUnitEnum.resx">
