@@ -35,7 +35,7 @@ namespace Delicious.Models
         }
 
         //za sorting
-        public object GetSortingParameters(string field, string category)
+        public object GetSortingParameters(string field, string category)        //string kategorija
         {
             //default direction
             var direction = "ASC";

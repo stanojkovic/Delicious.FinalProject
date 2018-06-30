@@ -21,10 +21,17 @@
             {
                 <h3 class="text-primary"><strong>Peciva</strong></h3>
             }
-            else
+            else if (@Model.kategorija == "Zdrava Hrana")
             {
                 <h4 class="text-primary"><strong>Zdrava Hrana</strong></h4>
             }
+            else
+            {
+            }
+
+
+
+
         </div>
 
         <div class="col-lg-2">
@@ -38,7 +45,7 @@
             @using (@Html.BeginForm())
             {
                 <div class="row">
-                    <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
+                    <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
                     <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
                 </div>
             }
@@ -46,10 +53,10 @@
 
         <div class="col-lg-2 ">
             <p>
-                
+                <button class="btn btn-amber">
                     <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                    @Html.ActionLink("Dodaj recept", "Create", new { @class = " text-yellow btn btn-info btn-md" })
-                
+                    @Html.ActionLink("Dodaj recept", "Create")
+                </button>
             </p>
         </div>
     </div>
@@ -70,16 +77,22 @@
 
 
 
-            <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
-                <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+            <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
+                <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
             </a>
 
+
+            @*<img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">*@
             @Html.Raw("</br></br>")
 
             <p class="text-info" style="font-size:26px;">
                 <span class="fa fa-pencil-square-o"></span>
                 @item.RecipeName
             </p>
+            @*@Html.DisplayNameFor(model => model.RecipeName)*@
+            @*@Html.Raw(":&nbsp;")*@
+            @*@Html.DisplayFor(modelItem => item.RecipeName)*@
+            @*@Html.Raw("</br>")*@
 
             <p class="text-info">
                 <span class="fa fa-calendar-plus-o"></span>
@@ -88,9 +101,15 @@
             </p>
             @Html.Raw("</br>")
 
-            @Html.Raw("</br>")
 
-            @if (User.IsInRole(RolesConfig.ADMIN))
+            @*@Html.Raw(":&nbsp;")*@
+            @*new { @value = System.DateTime.Now }*@
+            @*@Html.DisplayFor(modelItem => item.InputDate)*@
+            @Html.Raw("</br>")
+            @*@item.Category.CategoriesName*@
+            @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
+
+            @if (User.IsInRole(RolesConfig.USER))
             {
                 <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
                 @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
@@ -102,7 +121,7 @@
             @if (User.IsInRole(RolesConfig.ADMIN))
             {
                 <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-danger btn-md" })
+                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
             }
 
             <hr>

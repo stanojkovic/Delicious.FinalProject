@@ -53,50 +53,56 @@
 
 <div class="container">
     <div class="row">
-        @if (Model.Recipes.Any() == false)
+        @foreach (var item in Model.Recipes)
         {
-            <h1>NISTE KREIRALI NIJEDAN RECEPT</h1>
-        }
-        else
-        {
-            foreach (var item in Model.Recipes)
-            {
-                <div class="col-sm-4 mt-4 text-center">
+            <div class="col-sm-4 mt-4 text-center">
 
 
 
-                    <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
-                        <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
-                    </a>
+                <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
+                    <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+                </a>
 
-                    @Html.Raw("</br></br>")
 
-                    <p class="text-info" style="font-size:26px;">
-                        <span class="fa fa-pencil-square-o"></span>
-                        @item.RecipeName
-                    </p>
+                @*<img src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:250px;" class="img-thumbnail">*@
+                @Html.Raw("</br></br>")
 
-                    <p class="text-info">
-                        <span class="fa fa-calendar-plus-o"></span>
-                        @Html.Raw("&nbsp;&nbsp;&nbsp;")
-                        @item.InputDate
-                    </p>
-                    @Html.Raw("</br>")
+                <p class="text-info" style="font-size:26px;">
+                    <span class="fa fa-pencil-square-o"></span>
+                    @item.RecipeName
+                </p>
+                @*@Html.DisplayNameFor(model => model.RecipeName)*@
+                @*@Html.Raw(":&nbsp;")*@
+                @*@Html.DisplayFor(modelItem => item.RecipeName)*@
+                @*@Html.Raw("</br>")*@
 
-                    @Html.Raw("</br>")
+                <p class="text-info">
+                    <span class="fa fa-calendar-plus-o"></span>
+                    @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                    @item.InputDate
+                </p>
+                @Html.Raw("</br>")
 
-                    <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
-                    @Html.Raw("&nbsp;")
-                    <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
-                    @Html.Raw("&nbsp;")
-                    <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
 
-                    <hr>
-                </div>
-            }
+                @*@Html.Raw(":&nbsp;")*@
+                @*new { @value = System.DateTime.Now }*@
+                @*@Html.DisplayFor(modelItem => item.InputDate)*@
+                @Html.Raw("</br>")
+                @*@item.Category.CategoriesName*@
+                @*@Html.DisplayFor(r => item.Category.CategoriesName)*@
+
+
+                <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
+                @Html.Raw("&nbsp;")
+                <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
+                @Html.Raw("&nbsp;")
+                <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+
+                <hr>
+            </div>
         }
     </div>
 </div>

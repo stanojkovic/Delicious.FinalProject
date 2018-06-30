@@ -1,5 +1,4 @@
-﻿@using Delicious.Models
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,7 +9,8 @@
     <link rel="stylesheet" href="~/Content/lightbox/dist/css/lightbox.min.css">
     @Scripts.Render("~/bundles/modernizr")
 </head>
-
+@*style="background-image: linear-gradient(white, yellow);"*@
+@*style="background-image: url(/Content/img/BluePattern.jpg);"*@
 <body style="background-image: linear-gradient(white, #2989b9);">
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
@@ -25,10 +25,7 @@
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    @if (User.IsInRole(RolesConfig.USER))
-                    {
-                        <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -85,6 +82,12 @@
                         <li>
                             <a href="http://www.poslasticarnicapunto.com/">Poslastičarnica</a>
                         </li>
+                        @*<li>
+                            <a href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!">Link 4</a>
+                        </li>*@
                     </ul>
                 </div>
                 <!-- Grid column -->
@@ -94,6 +97,9 @@
                     <!-- Links -->
                     <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Mapa sajta</h5>
                     <ul class="list-unstyled">
+
+
+
                         <li>@Html.ActionLink("Kolači", "Index", "Recipes", new { area = "", kategorija = "Kolaci" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
@@ -113,6 +119,7 @@
             </li>
             <li class="list-inline-item">
                 @Html.ActionLink("Sign up!", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-white btn btn-danger btn-rounded" })
+                @*<a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>*@
             </li>
         </ul>
         <!-- Call to action -->
@@ -159,6 +166,7 @@
     <script src="~/Content/lightbox/dist/js/lightbox-plus-jquery.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/mdb")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

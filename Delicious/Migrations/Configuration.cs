@@ -44,12 +44,7 @@
                 p => p.IngredientName,
                  new Models.Ingredient { IngredientName = "So" },
                  new Models.Ingredient { IngredientName = "Secer" },
-                 new Models.Ingredient { IngredientName = "Brasno" },
-                new Models.Ingredient { IngredientName = "Vanilin secer" },
-                new Models.Ingredient { IngredientName = "Prasak za pecivo" },
-                new Models.Ingredient { IngredientName = "Jaja" },
-                new Models.Ingredient { IngredientName = "Kvasac" },
-                new Models.Ingredient { IngredientName = "Kakao" }
+                 new Models.Ingredient { IngredientName = "Brasno" }
                 );
 
 

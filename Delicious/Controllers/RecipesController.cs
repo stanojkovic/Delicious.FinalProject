@@ -144,6 +144,15 @@ namespace Delicious.Controllers
             return View(formRecipeData);
         }
 
+        //private bool EditAcessNotAuthorized(Recipe recipe)
+        //{
+        //    return User.IsInRole(RolesConfig.USER) ? false : recipe.User.UserName != User.Identity.Name;
+        //}
+
+
+
+
+
         // GET: Recipes/Edit/5
         [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Edit(Guid? id)
@@ -217,7 +226,7 @@ namespace Delicious.Controllers
                 SaveImage(recipeBase, img);
                 db.SaveChanges();
 
-                return RedirectToAction("MyRecipes", new { kategorija });
+                return RedirectToAction("Index", new { kategorija });
             }
 
             SetCategory();
@@ -334,8 +343,7 @@ namespace Delicious.Controllers
             {
                 CommentContent = comment,
                 Recipe = commentedRecipe,
-                User = user,
-                CommentInputDate = DateTime.Now
+                User = user
             };
 
             db.Comments.Add(commentForDB);
