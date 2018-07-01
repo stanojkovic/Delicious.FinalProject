@@ -11,41 +11,39 @@
 
 
 <div class="container">
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col-lg-2">
-
         </div>
-
+        <div class="col-lg-4">
+            @using (@Html.BeginForm())
+        {
+            <div class="row">
+                <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
+                <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
+            </div>
+    }
+        </div>
         <div class="col-lg-2">
-            <button type="button" class="btn btn-primary">
+            <button class="btn btn-outline-success">
                 Укупно:&nbsp;&nbsp; <span class="badge badge-light">@Model.Count</span>
                 <span class="sr-only">unread messages</span>
             </button>
         </div>
-
-        <div class="col-lg-6">
-            @using (@Html.BeginForm())
-            {
-                <div class="row">
-                    <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
-                    <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
-                </div>
-            }
-        </div>
-
         <div class="col-lg-2 ">
-            <p>
-                <button class="btn btn-amber">
-                    <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                    @Html.ActionLink("Dodaj recept", "Create")
-                </button>
-            </p>
+
+            <button class="btn btn-amber">
+                <span class="fa fa-plus"></span>&nbsp;&nbsp;
+                @Html.ActionLink("Dodaj recept", "Create")
+            </button>
+
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Sortiraj po nazivu", "Index", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-white btn btn-outline-success" })
         </div>
     </div>
 </div>
 
 
-@Html.ActionLink("Sortiraj po nazivu", "MyRecipes", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-warning btn btn-outline-warning text-default" })
 
 
 <hr>
