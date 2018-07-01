@@ -1,15 +1,15 @@
 ﻿@model Delicious.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registracija";
 }
 
 <div class="container p-4">
-    <h2>@ViewBag.Title.</h2>
+    <h2>@ViewBag.Title</h2>
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <h4>Kreirajte nalog.</h4>
+        <h4>Kreirajte nalog</h4>
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
 
@@ -49,7 +49,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default" value="Register" />
+                <input type="submit" class="btn btn-outline-success" value="Registrujte se" />
             </div>
         </div>
     }

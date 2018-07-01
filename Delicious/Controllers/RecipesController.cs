@@ -34,7 +34,6 @@ namespace Delicious.Controllers
                 recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
             }
 
-            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));
@@ -96,7 +95,6 @@ namespace Delicious.Controllers
         [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
@@ -134,7 +132,7 @@ namespace Delicious.Controllers
 
                 SaveImage(recipeForDB, img);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { kategorija });
+                return RedirectToAction("MyRecipes");
 
             }
 
@@ -257,7 +255,6 @@ namespace Delicious.Controllers
                 System.IO.File.Delete(imagePath);
             }
 
-            //ne radi, a nece kao kod create i edit, nije radilo jer je zaboravljeno virtual u  public virtual Category Category { get; set; }
             var kategorija = recipe.Category.CategoriesName;
 
             //mora prvo da se obrisu redovi iz tabele RecipeIngredients zbog stranog kljuca Recipe_Id
@@ -311,7 +308,6 @@ namespace Delicious.Controllers
                 recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
             }
 
-            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));

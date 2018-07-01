@@ -8,13 +8,13 @@
 
 <div class="container mb-5">
     <div class="row mt-5">
-
         <div class="col-lg-4">
-
             <h1 class="text-success"> @Model.RecipeName</h1>
-
+            <h4>Autor:</h4>
+            @Html.DisplayFor(m => m.User.Name)
+            @Html.Raw("&nbsp;")
+            @Html.DisplayFor(m => m.User.LastName)
         </div>
-
     </div>
     <hr />
     <div class="row mt-3">

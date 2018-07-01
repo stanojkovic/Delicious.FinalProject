@@ -2,8 +2,6 @@
 @using Delicious.Models
 @model Delicious.Models.RecipeGridViewModel
 @{
-    /**/
-
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -54,7 +52,6 @@
         {
             foreach (var item in Model.Recipes)
             {
-                @*@Html.Raw("&nbsp");*@
                 <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#bdc3c7;">
 
 
@@ -99,7 +96,7 @@
                     <li>
                         @for (int i = 1; i <= Model.TotalPages; i++)
                         {
-                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i), new { @class = " btn btn-outline-success btn-lg" })
+                            @Html.ActionLink(i.ToString(), "MyRecipes", Model.GetPagingParameters(i), new { @class = " btn btn-outline-success btn-lg" })
                             @Html.Raw("&nbsp;")
 
                         }

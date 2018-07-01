@@ -11,7 +11,7 @@ namespace Delicious.Models
         public enum Unit
         {
             kg,
-            gr,
+            g,
             l,
             dl,
             ml,

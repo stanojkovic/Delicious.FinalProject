@@ -13,11 +13,15 @@ namespace Delicious.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
+        [Required(ErrorMessage = "Molimo Vas, unesite naziv recepta")]
         [Display(Name ="Naziv:")]
         public string RecipeName { get; set; }
+
+        [Required(ErrorMessage = "Molimo Vas, unesite način pripreme")]
         [Display(Name = "Priprema:")]
         public string Description { get; set; }
-        [Display(Name = "OdaberiteSliku")]
+
+        [Display(Name = "Odaberite Sliku")]
         public string ImageName { get; set; }
 
       

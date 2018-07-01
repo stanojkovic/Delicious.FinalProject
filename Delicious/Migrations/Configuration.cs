@@ -49,7 +49,13 @@
                 new Models.Ingredient { IngredientName = "Prasak za pecivo" },
                 new Models.Ingredient { IngredientName = "Jaja" },
                 new Models.Ingredient { IngredientName = "Kvasac" },
-                new Models.Ingredient { IngredientName = "Kakao" }
+                new Models.Ingredient { IngredientName = "Kakao" },
+                new Models.Ingredient { IngredientName = "Cokolada" },
+                new Models.Ingredient { IngredientName = "Ulje" },
+                new Models.Ingredient { IngredientName = "Puter" },
+                new Models.Ingredient { IngredientName = "Margarin" },
+                new Models.Ingredient { IngredientName = "Mleko" },
+                new Models.Ingredient { IngredientName = "Voda" }
                 );
 
 

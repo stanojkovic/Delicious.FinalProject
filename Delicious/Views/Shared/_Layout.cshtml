@@ -29,18 +29,19 @@
                     {
                         @Html.Raw("&nbsp;&nbsp;&nbsp;");
                         <li class="">
-                            <button class="btn btn-outline-success btn-sm">
+                            @*<button class="btn btn-outline-success btn-sm">*@
                                 @Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })
-                            </button></li>
-                        
-                            }
-</ul>
+                            @*</button>*@
+                        </li>
+
+                    }
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
 
-    <div class="container" >
+    <div class="container">
         @RenderBody()
 
     </div>
