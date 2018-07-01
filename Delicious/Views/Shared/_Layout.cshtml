@@ -25,10 +25,14 @@
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+<<<<<<< HEAD
                     @if (User.IsInRole(RolesConfig.USER))
                     {
                         <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
                     }
+=======
+                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

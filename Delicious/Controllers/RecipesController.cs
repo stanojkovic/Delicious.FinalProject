@@ -303,6 +303,11 @@ namespace Delicious.Controllers
         {
             IQueryable<Recipe> recipes = db.Recipes;
 
+<<<<<<< HEAD
+=======
+            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
             if (User.IsInRole(RolesConfig.USER))
             {
                 recipes = recipes.Where(r => r.User.UserName == User.Identity.Name);
@@ -339,8 +344,12 @@ namespace Delicious.Controllers
             {
                 CommentContent = comment,
                 Recipe = commentedRecipe,
+<<<<<<< HEAD
                 User = user,
                 CommentInputDate = DateTime.Now
+=======
+                User = user
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
             };
 
             db.Comments.Add(commentForDB);

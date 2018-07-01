@@ -102,7 +102,11 @@
             @if (User.IsInRole(RolesConfig.ADMIN))
             {
                 <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+<<<<<<< HEAD
                 @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-danger btn-md" })
+=======
+                @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
             }
 
             <hr>

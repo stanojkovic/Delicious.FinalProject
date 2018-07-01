@@ -26,13 +26,21 @@
 
             <label>Sastojci:</label>
             <br>
+<<<<<<< HEAD
             @foreach (var i in Model.Ingredients.Where(i => i.Quantity > 0))
+=======
+            @foreach (var i in Model.Ingredients)
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
             {
                 @Html.DisplayFor(modelItem => i.Ingredient.IngredientName)
                 @Html.Raw("&nbsp;&nbsp;&nbsp;")
                 @Html.DisplayFor(modelItem => i.Quantity)
                 @Html.Raw("&nbsp;&nbsp;&nbsp;")
                 @Html.DisplayFor(modelItem => i.UnitOfMeasure)
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
                 <br>
             }
 
@@ -52,6 +60,11 @@
 
 <div class="container">
     <div class="row">
+<<<<<<< HEAD
+=======
+        @*@Html.ActionLink("Ostavite komentar", "Create", "Comments", new { recipeId = Model.Id})*@
+
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
         <div>
             @using (Html.BeginForm("LeaveComment", "Recipes", FormMethod.Post))
             {

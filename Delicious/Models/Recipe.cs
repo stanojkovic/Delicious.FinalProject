@@ -37,6 +37,13 @@ namespace Delicious.Models
 
 
         public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
+<<<<<<< HEAD
+=======
+
+        //dodao sam za autorizaciju, da korisnik moze da edituje samo svoje recepte
+        //public virtual ApplicationUser User { get; set; }
+
+>>>>>>> cc0d17abea2472cfb078b0417a4f0689e63e17a0
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
