@@ -232,6 +232,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Delicious-20180608093541.mdf" />
+    <Content Include="App_Data\aspnet-Delicious-20180608093541_log.ldf">
+      <DependentUpon>aspnet-Delicious-20180608093541.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\aspnet-Delicious-20180608093549.mdf" />
     <Content Include="App_Data\aspnet-Delicious-20180608093549_log.ldf">
       <DependentUpon>aspnet-Delicious-20180608093549.mdf</DependentUpon>
@@ -247,6 +251,7 @@
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Content\img\no-image-about.jpg" />
     <Content Include="Content\img\no_image.png" />
     <Content Include="Content\img\sasa.jpg" />
     <Content Include="Content\lightbox\.editorconfig" />

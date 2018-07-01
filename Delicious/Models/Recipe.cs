@@ -13,10 +13,11 @@ namespace Delicious.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Display(Name ="Naziv")]
+        [Display(Name ="Naziv:")]
         public string RecipeName { get; set; }
-        [Display(Name = "Nacin pripreme")]
+        [Display(Name = "Priprema:")]
         public string Description { get; set; }
+        [Display(Name = "OdaberiteSliku")]
         public string ImageName { get; set; }
 
       
@@ -29,10 +30,11 @@ namespace Delicious.Models
             }
         }
 
-        [Display(Name = "Datum kreiranja recepta")]
+        [Display(Name = "Datum kreiranja recepta:")]
         public DateTime InputDate { get; set; }
         
         [Required]
+        [Display(Name = "Kategorija:")]
         public virtual Category Category { get; set; }
 
 

@@ -1,6 +1,5 @@
 ﻿
 @using Delicious.Models
-
 @model Delicious.Models.RecipeGridViewModel
 @{
     /**/
@@ -9,47 +8,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="container">
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col-lg-2">
-
         </div>
-
-        <div class="col-lg-2">
-            <button type="button" class="btn btn-primary">
-                Укупно:&nbsp;&nbsp; <span class="badge badge-light">@Model.Count</span>
-                <span class="sr-only">unread messages</span>
-            </button>
-        </div>
-
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             @using (@Html.BeginForm())
             {
                 <div class="row">
-                    <div class="col-lg-6">@Html.TextBox("Query", "Pretraga po nazivu !", new { @class = "form-control text-primary" })</div>
+                    <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
                     <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
                 </div>
             }
         </div>
-
+        <div class="col-lg-2">
+            <button class="btn btn-outline-success">
+                Укупно:&nbsp;&nbsp; <span class="badge badge-light">@Model.Count</span>
+                <span class="sr-only">unread messages</span>
+            </button>
+        </div>
         <div class="col-lg-2 ">
-            <p>
-                <button class="btn btn-amber">
-                    <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                    @Html.ActionLink("Dodaj recept", "Create")
-                </button>
-            </p>
+
+            <button class="btn btn-amber">
+                <span class="fa fa-plus"></span>&nbsp;&nbsp;
+                @Html.ActionLink("Dodaj recept", "Create")
+            </button>
+
+        </div>
+        <div class="col-lg-2">
+            @Html.ActionLink("Sortiraj po nazivu", "MyRecipes", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-success btn btn-outline-success" })
         </div>
     </div>
 </div>
 
 
-@Html.ActionLink("Sortiraj po nazivu", "MyRecipes", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-warning btn btn-outline-warning text-default" })
-
-
 <hr>
-
 
 <div class="container">
     <div class="row">
@@ -61,56 +54,52 @@
         {
             foreach (var item in Model.Recipes)
             {
-                <div class="col-sm-4 mt-4 text-center">
+                @*@Html.Raw("&nbsp");*@
+                <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#bdc3c7;">
 
 
-
-                    <a class="example-image-link" href="@string.Format("/Content/img/{0}", item.ImageNameToShow)" data-lightbox="example-set">
-                        <img class="example-image img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+                    <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
+                        <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:300px;">
                     </a>
-
                     @Html.Raw("</br></br>")
-
-                    <p class="text-info" style="font-size:26px;">
+                    <p style="font-size:26px; color:#16a085;">
                         <span class="fa fa-pencil-square-o"></span>
                         @item.RecipeName
                     </p>
-
                     <p class="text-info">
                         <span class="fa fa-calendar-plus-o"></span>
                         @Html.Raw("&nbsp;&nbsp;&nbsp;")
                         @item.InputDate
                     </p>
-                    @Html.Raw("</br>")
 
                     @Html.Raw("</br>")
-
-                    <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-primary btn-md" })
+                   
+                        <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;</i></span>
+                        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-warning btn-md" })
+                        @Html.Raw("&nbsp;")
+                    
+                    <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-outline-success btn-md" })
                     @Html.Raw("&nbsp;")
-                    <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-success btn-md" })
-                    @Html.Raw("&nbsp;")
-                    <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-                    @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "delete-dugme text-white btn btn-danger btn-md" })
-
+                   
+                        <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;</i></span>
+                        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-danger btn-md" })
+                    
                     <hr>
                 </div>
             }
         }
     </div>
 </div>
-
 <div class="container">
-    <div class="row text-center">
+    <div class="row text-center mt-2">
         <div class="col-lg-12">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li>
-
                         @for (int i = 1; i <= Model.TotalPages; i++)
                         {
-                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i), new { @class = " btn btn-warning btn-lg" })
+                            @Html.ActionLink(i.ToString(), "Index", Model.GetPagingParameters(i), new { @class = " btn btn-outline-success btn-lg" })
                             @Html.Raw("&nbsp;")
 
                         }

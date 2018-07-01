@@ -11,12 +11,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body style="background-image: linear-gradient(white, #2989b9);">
+<body style="background-color: #ecf0f1;">
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
-            <span class="text-danger"><i class="fa fa-birthday-cake wow animated bounce infinite" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-            @Html.ActionLink("DELICIOUS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-muted wow animated pulse infinite" })
+            <span class="text-default"><i class="fa fa-birthday-cake fa-2x" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+            @Html.ActionLink("DELICIOUS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-success" })
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
@@ -24,12 +24,17 @@
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Peciva", "Index", "Recipes", new { area = "", kategorija = "Peciva" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Zdrava Hrana", "Index", "Recipes", new { area = "", kategorija = "Zdrava Hrana" }, new { @class = "nav-link" })</li>
                     <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("O nama", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @*<li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
                     @if (User.IsInRole(RolesConfig.USER))
                     {
-                        <li class="nav-item border border-light border-top-0 border-left-0 border-bottom-0">@Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })</li>
-                    }
-                </ul>
+                        @Html.Raw("&nbsp;&nbsp;&nbsp;");
+                        <li class="">
+                            <button class="btn btn-outline-success btn-sm">
+                                @Html.ActionLink("Moji recepti", "MyRecipes", "Recipes", new { area = "" }, new { @class = "nav-link" })
+                            </button></li>
+                        
+                            }
+</ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
