@@ -29,6 +29,7 @@ namespace Delicious.Models
             }
         }
 
+        [Display(Name = "Datum kreiranja recepta")]
         public DateTime InputDate { get; set; }
         
         [Required]

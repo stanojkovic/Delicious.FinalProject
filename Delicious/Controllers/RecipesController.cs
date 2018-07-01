@@ -217,7 +217,7 @@ namespace Delicious.Controllers
                 SaveImage(recipeBase, img);
                 db.SaveChanges();
 
-                return RedirectToAction("MyRecipes", new { kategorija });
+                return RedirectToAction("MyRecipes");
             }
 
             SetCategory();
@@ -227,7 +227,7 @@ namespace Delicious.Controllers
 
 
         // GET: Recipes/Delete/5
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -245,7 +245,7 @@ namespace Delicious.Controllers
         // POST: Recipes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RolesConfig.ADMIN)]
+        [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Delete(Guid id)
         {
             Recipe recipe = db.Recipes.Find(id);
@@ -269,9 +269,16 @@ namespace Delicious.Controllers
                 db.RecipeIngredients.Remove(ri);
             }
 
+            //moraju da se izbrisu i komentari vezani za recept koji se brise
+            var comments = db.Comments.Where(c => c.Recipe.Id == id);
+            foreach(var comment in comments)
+            {
+                db.Comments.Remove(comment);
+            }
+
             db.Recipes.Remove(recipe);
             db.SaveChanges();
-            return RedirectToAction("Index", new { kategorija });
+            return RedirectToAction("MyRecipes");
         }
 
         private void SaveImage(Recipe recipe, HttpPostedFileBase img)
@@ -295,8 +302,6 @@ namespace Delicious.Controllers
         public ActionResult MyRecipes(RecipeGridViewModel viewModel)
         {
             IQueryable<Recipe> recipes = db.Recipes;
-
-            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
 
             if (User.IsInRole(RolesConfig.USER))
             {
