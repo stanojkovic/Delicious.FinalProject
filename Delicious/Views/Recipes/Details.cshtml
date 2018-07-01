@@ -6,25 +6,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container  mb-5">
+<div class="container mb-5">
     <div class="row mt-5">
-        <div class="col-lg-8 offset-lg-2">
-            <span class="fa fa-th-list fa-4x"></span>
-            <h2 class="display-4 text-danger">@Model.RecipeName</h2>
-            <hr />
-        </div>
-    </div>
 
+        <div class="col-lg-8 offset-4">
+
+            <h1 class="text-success"> @Model.RecipeName</h1>
+
+        </div>
+
+    </div>
+    <hr />
     <div class="row mt-3">
         <div class="col-lg-4 offset-lg-2">
             <a class="example-image-link" href="@string.Format("/Content/img/{0}", Model.ImageNameToShow)" data-lightbox="example-set">
                 <img class="example-image img-thumbnail mb-4" src="@string.Format("/Content/img/{0}", Model.ImageNameToShow)" style="width:200px;">
             </a>
         </div>
-
         <div class="col-lg-6">
-
-            <label>Sastojci:</label>
+            <label class="text-success"><span class="fa fa-th-list">&nbsp;&nbsp;&nbsp;</span>Sastojci:</label>
             <br>
             @foreach (var i in Model.Ingredients.Where(i => i.Quantity > 0))
             {
@@ -35,11 +35,10 @@
                 @Html.DisplayFor(modelItem => i.UnitOfMeasure)
                 <br>
             }
+            <hr>
+            <dl class="dl-horizontal" style="color:#2980b9;">
 
-            <dl class="dl-horizontal" style="color:#000;">
-
-
-                <dt style="font-size:30px;">
+                <dt style="font-size:20px;" class="text-success">
                     @Html.DisplayNameFor(model => model.Description)
                 </dt>
                 <dd style="font-size:20px;">
@@ -49,10 +48,10 @@
         </div>
     </div>
 </div>
-
+<hr>
 <div class="container">
     <div class="row">
-        <div>
+        <div class="col-lg-4 offset-8">
             @using (Html.BeginForm("LeaveComment", "Recipes", FormMethod.Post))
             {
                 <input name="recipeId" type="hidden" value="@Model.Id">
@@ -60,34 +59,50 @@
                 <input type="submit" value="Ostavite komentar" class="btn" />
             }
         </div>
-
-        <div>
-            @foreach (var comment in Model.Comments)
-            {
+     </div>
+    <hr>
+        <div class="row">
+            <div class="col-lg-6 offset-6">
+                @foreach (var comment in Model.Comments)
+                    {
+            <div style="background-color:white; width:500px;">
                 @Html.DisplayFor(modelItem => comment.CommentContent)
-            }
-        </div>
-    </div>
-</div>
+            </div>
+            <span class="fa fa-user"></span>
+            @Html.Raw("&nbsp;&nbsp;");
+            @Html.DisplayFor(modelItem => comment.User.UserName)
 
-<div class="container">
+            @Html.Raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+            <span class="fa fa-calendar-o"></span>
+            @Html.Raw("&nbsp;&nbsp;");
+            @Html.DisplayFor(modelItem => comment.CommentInputDate)
+            <br>
+                    }
+            </div>
+        </div>
+       
+    </div>
+
+<hr>
+<div class="container mb-4">
     <div class="row">
-        <div style="float:right;">
+        <div class="col-lg-2 offset-10">
             @*da bismo se vratili na prethodnu stranu*@
             @if (Model.Category.CategoriesName == "Kolaci")
-            {
-                ViewBag.Kategorija = "Kolaci";
-            }
-            else if (Model.Category.CategoriesName == "Peciva")
-            {
-                ViewBag.Kategorija = "Peciva";
-            }
-            else
-            {
-                ViewBag.Kategorija = "Zdrava Hrana";
-            }
+        {
+            ViewBag.Kategorija = "Kolaci";
+        }
+        else if (Model.Category.CategoriesName == "Peciva")
+        {
+            ViewBag.Kategorija = "Peciva";
+        }
+        else
+        {
+            ViewBag.Kategorija = "Zdrava Hrana";
+        }
 
             @Html.ActionLink("Nazad", "Index", new { ViewBag.Kategorija })
+
         </div>
     </div>
 </div>
