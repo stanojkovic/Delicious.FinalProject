@@ -9,7 +9,7 @@
 <div class="container mb-5">
     <div class="row mt-5">
 
-        <div class="col-lg-8 offset-4">
+        <div class="col-lg-4">
 
             <h1 class="text-success"> @Model.RecipeName</h1>
 
@@ -89,26 +89,5 @@
 </div>
 
 <hr>
-<div class="container mb-4">
-    <div class="row">
-        <div class="col-lg-2 offset-10">
-            @*da bismo se vratili na prethodnu stranu*@
-            @if (Model.Category.CategoriesName == "Kolaci")
-            {
-                ViewBag.Kategorija = "Kolaci";
-            }
-            else if (Model.Category.CategoriesName == "Peciva")
-            {
-                ViewBag.Kategorija = "Peciva";
-            }
-            else
-            {
-                ViewBag.Kategorija = "Zdrava Hrana";
-            }
 
-            @Html.ActionLink("Nazad", "MyRecipes")
-
-        </div>
-    </div>
-</div>
 
