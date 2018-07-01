@@ -220,6 +220,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -231,6 +232,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Delicious-20180608093541.mdf" />
+    <Content Include="App_Data\aspnet-Delicious-20180608093541_log.ldf">
+      <DependentUpon>aspnet-Delicious-20180608093541.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\aspnet-Delicious-20180608093549.mdf" />
     <Content Include="App_Data\aspnet-Delicious-20180608093549_log.ldf">
       <DependentUpon>aspnet-Delicious-20180608093549.mdf</DependentUpon>
@@ -501,6 +506,7 @@
     <Content Include="Views\Ingredients\Details.cshtml" />
     <Content Include="Views\Ingredients\Edit.cshtml" />
     <Content Include="Views\Ingredients\Index.cshtml" />
+    <Content Include="Views\Recipes\MyRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806231337576_AddUnitEnum.resx">

@@ -13,7 +13,8 @@ namespace Delicious.Models
         public string Name { get; set; }
         public string LastName { get; set; }
 
-        public virtual ICollection<Recipe> Recipe { get; set; }
+        public virtual ICollection<Recipe> Recipes { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -30,6 +31,7 @@ namespace Delicious.Models
         public virtual DbSet<Ingredient> Ingredients { get; set; }
         public virtual DbSet<Recipe> Recipes { get; set; }
         public virtual DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
