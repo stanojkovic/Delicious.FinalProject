@@ -36,7 +36,7 @@
 
         </div>
         <div class="col-lg-2">
-            @Html.ActionLink("Sortiraj po nazivu", "MyRecipes", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-white btn btn-outline-success" })
+            @Html.ActionLink("Sortiraj po nazivu", "MyRecipes", Model.GetSortingParameters("RecipeName", @Model.kategorija), new { @class = "text-success btn btn-outline-success" })
         </div>
     </div>
 </div>
@@ -55,14 +55,14 @@
             foreach (var item in Model.Recipes)
             {
                 @*@Html.Raw("&nbsp");*@
-                <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#2c3e50;">
+                <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#bdc3c7;">
 
 
                     <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
-                        <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+                        <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:300px;">
                     </a>
                     @Html.Raw("</br></br>")
-                    <p style="font-size:26px; color:#c8c8ca;">
+                    <p style="font-size:26px; color:#16a085;">
                         <span class="fa fa-pencil-square-o"></span>
                         @item.RecipeName
                     </p>
