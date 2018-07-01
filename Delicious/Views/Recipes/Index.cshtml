@@ -87,7 +87,7 @@
         @if (User.IsInRole(RolesConfig.ADMIN))
     {
         <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-light btn-md" })
+        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-warning btn-md" })
         @Html.Raw("&nbsp;")
 }
         <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
@@ -96,7 +96,7 @@
         @if (User.IsInRole(RolesConfig.ADMIN))
     {
         <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-light btn-md" })
+        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-danger btn-md" })
 }
         <hr>
     </div>
