@@ -27,8 +27,6 @@ namespace Delicious.Controllers
             if (kategorija != null)
             {
                 recipes = recipes.Where(r => r.Category.CategoriesName == kategorija);
-                //da vraca posle create i edit u odgovarajucu kategoriju
-                ViewBag.Kategorija = kategorija;
             }
 
             if (viewModel.Query != null)

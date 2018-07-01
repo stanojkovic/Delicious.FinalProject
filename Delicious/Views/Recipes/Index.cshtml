@@ -14,27 +14,27 @@
     <div class="row mt-5">
         <div class="col-lg-2" style="color:#c8c8ca;">
             @if (@Model.kategorija == "Kolaci")
-        {
-            <h3><strong>Kolači</strong></h3>
-    }
-    else if (@Model.kategorija == "Peciva")
-    {
-        <h3><strong>Peciva</strong></h3>
-}
-else
-{
-    <h4><strong>Zdrava Hrana</strong></h4>
-}
+            {
+                <h3><strong>Kolači</strong></h3>
+            }
+            else if (@Model.kategorija == "Peciva")
+            {
+                <h3><strong>Peciva</strong></h3>
+            }
+            else
+            {
+                <h4><strong>Zdrava Hrana</strong></h4>
+            }
         </div>
 
         <div class="col-lg-4">
             @using (@Html.BeginForm())
-        {
-            <div class="row">
-                <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
-                <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
-            </div>
-    }
+            {
+                <div class="row">
+                    <div class="col-lg-6">@Html.TextBox("Query", "", new { @class = "form-control text-primary" })</div>
+                    <div class="col-lg-6"><button type="submit" value="Search" class="btn btn-default btn-md "> <span class="fa fa-search"></span>&nbsp;&nbsp;Traži </button></div>
+                </div>
+            }
         </div>
         <div class="col-lg-2">
             <button class="btn btn-outline-success">
@@ -64,43 +64,42 @@ else
 <div class="container">
     <div class="row">
         @foreach (var item in Model.Recipes)
-    {
-        @*@Html.Raw("&nbsp");*@
-    <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#2c3e50;">
+        {
+            <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#2c3e50;">
 
 
-        <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
-            <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
-        </a>
-        @Html.Raw("</br></br>")
-        <p  style="font-size:26px; color:#c8c8ca;">
-            <span class="fa fa-pencil-square-o"></span>
-            @item.RecipeName
-        </p>
-        <p class="text-info">
-            <span class="fa fa-calendar-plus-o"></span>
-            @Html.Raw("&nbsp;&nbsp;&nbsp;")
-            @item.InputDate
-        </p>
-     
-        @Html.Raw("</br>")
-        @if (User.IsInRole(RolesConfig.ADMIN))
-    {
-        <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-light btn-md" })
-        @Html.Raw("&nbsp;")
-}
-        <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-outline-success btn-md" })
-        @Html.Raw("&nbsp;")
-        @if (User.IsInRole(RolesConfig.ADMIN))
-    {
-        <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-light btn-md" })
-}
-        <hr>
-    </div>
-}
+                <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
+                    <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:200px;">
+                </a>
+                @Html.Raw("</br></br>")
+                <p style="font-size:26px; color:#c8c8ca;">
+                    <span class="fa fa-pencil-square-o"></span>
+                    @item.RecipeName
+                </p>
+                <p class="text-info">
+                    <span class="fa fa-calendar-plus-o"></span>
+                    @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                    @item.InputDate
+                </p>
+
+                @Html.Raw("</br>")
+                @if (User.IsInRole(RolesConfig.ADMIN))
+                {
+                    <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-light btn-md" })
+                    @Html.Raw("&nbsp;")
+                }
+                <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-outline-success btn-md" })
+                @Html.Raw("&nbsp;")
+                @if (User.IsInRole(RolesConfig.ADMIN))
+                {
+                    <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-light btn-md" })
+                }
+                <hr>
+            </div>
+        }
     </div>
 </div>
 
