@@ -70,12 +70,10 @@ namespace Delicious.Controllers
         public ActionResult Create()
         {
             SetCategory();
-            //SetIngredients();
 
             var allIngredients = db.Ingredients.ToList();
             var recipeIngredientList = new List<RecipeIngredient>();
 
-            // ekvivalentno allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
             foreach (var item in allIngredients)
             {
                 recipeIngredientList.Add(new RecipeIngredient() { Ingredient = item });
@@ -84,7 +82,7 @@ namespace Delicious.Controllers
             var model = new Recipe()
             {
                 // napravi mi listu RecipeIngredient objekata
-                Ingredients = recipeIngredientList // allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
+                Ingredients = recipeIngredientList
             };
 
             return View(model);
@@ -126,14 +124,9 @@ namespace Delicious.Controllers
 
                 db.SaveChanges();
 
-                //da bi se nakon kreiranja proizvoda vratili na stranicu na kojoj se prikazuje
-                //odgovarajuca kategorija, a ne recepti svih kategorija
-                var kategorija = recipeForDB.Category.CategoriesName;
-
                 SaveImage(recipeForDB, img);
                 db.SaveChanges();
                 return RedirectToAction("MyRecipes");
-
             }
 
             SetCategory();
@@ -206,10 +199,6 @@ namespace Delicious.Controllers
                 recipeBase.Category = db.Categories.Find(recipeForm.Category.Id);
                 recipeForm.InputDate = DateTime.Now;
 
-                //da bi se nakon kreiranja proizvoda vratili na stranicu na kojoj se prikazuje
-                //odgovarajuca kategorija, a ne recepti svih kategorija
-                var kategorija = recipeBase.Category.CategoriesName;
-
                 SaveImage(recipeBase, img);
                 db.SaveChanges();
 
@@ -217,7 +206,7 @@ namespace Delicious.Controllers
             }
 
             SetCategory();
-            //SetIngredients();
+
             return View(recipeForm);
         }
 
@@ -255,11 +244,9 @@ namespace Delicious.Controllers
                 System.IO.File.Delete(imagePath);
             }
 
-            var kategorija = recipe.Category.CategoriesName;
-
             //mora prvo da se obrisu redovi iz tabele RecipeIngredients zbog stranog kljuca Recipe_Id
-            var recpieIngredients = db.RecipeIngredients.Where(ri => ri.Recipe.Id == id);
-            foreach(var ri in recpieIngredients)
+            var recepieIngredients = db.RecipeIngredients.Where(ri => ri.Recipe.Id == id);
+            foreach(var ri in recepieIngredients)
             {
                 db.RecipeIngredients.Remove(ri);
             }
@@ -324,6 +311,7 @@ namespace Delicious.Controllers
         }
 
         //za ostavljenja komentara
+        [AllowAnonymous]
         public ActionResult LeaveComment(Guid recipeId, string comment)
         {
             var commentedRecipe = db.Recipes.Find(recipeId);

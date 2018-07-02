@@ -14,6 +14,8 @@
             @Html.DisplayFor(m => m.User.Name)
             @Html.Raw("&nbsp;")
             @Html.DisplayFor(m => m.User.LastName)
+            @Html.Raw("<br />")
+            @Html.DisplayFor(m => m.InputDate)
         </div>
     </div>
     <hr />
@@ -57,7 +59,7 @@
                 <input name="recipeId" type="hidden" value="@Model.Id">
                 <textarea name="comment" type="text" value="" style="border-radius:5px; width:350px; height:100px;"></textarea>
                 <br /><br />
-                <input type="submit" value="Ostavite komentar" class="btn" />
+                <input type="submit" value="Ostavite komentar" class="btn btn-outline-success" />
             }
         </div>
     </div>
