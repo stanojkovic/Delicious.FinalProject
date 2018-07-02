@@ -151,7 +151,6 @@ namespace Delicious.Controllers
 
             //da se pored cekiranih sastojaka dodaju i necekirani iz baze
             var allIngredients = db.Ingredients.ToList();
-
             foreach (Ingredient item in allIngredients)
             {
                 bool n = false;
@@ -161,6 +160,7 @@ namespace Delicious.Controllers
                     if (ri.Ingredient.Equals(item))
                     {
                         n = true;
+                        ri.Selected = true;
                         break;
                     }
                 }
@@ -185,16 +185,21 @@ namespace Delicious.Controllers
                 var recipeBase = db.Recipes.Find(recipeForm.Id);
                 TryUpdateModel(recipeBase, new string[] { "RecipeName", "Description" });
 
-                db.RecipeIngredients.RemoveRange(recipeBase.Ingredients);               
+                db.RecipeIngredients.RemoveRange(recipeBase.Ingredients);
 
-                recipeBase.Ingredients = recipeForm.Ingredients.Select(ri =>
-                               new RecipeIngredient()
-                               {
-                                   Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
-                                   Quantity = ri.Quantity,
-                                   Recipe = recipeBase
-                               }
-                           ).ToList();
+                foreach (RecipeIngredient ri in recipeForm.Ingredients)
+                {
+                    if (ri.Selected)
+                    {
+                        recipeBase.Ingredients.Add(new RecipeIngredient()
+                        {
+                            Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
+                            Quantity = ri.Quantity,
+                            Recipe = recipeBase,
+                            UnitOfMeasure = ri.UnitOfMeasure
+                        });
+                    }
+                }
 
                 recipeBase.Category = db.Categories.Find(recipeForm.Category.Id);
                 recipeForm.InputDate = DateTime.Now;
@@ -311,7 +316,6 @@ namespace Delicious.Controllers
         }
 
         //za ostavljenja komentara
-        [AllowAnonymous]
         public ActionResult LeaveComment(Guid recipeId, string comment)
         {
             var commentedRecipe = db.Recipes.Find(recipeId);
