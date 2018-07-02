@@ -44,10 +44,10 @@
         </div>
         <div class="col-lg-2 ">
 
-            <button class="btn btn-amber">
-                <span class="fa fa-plus"></span>&nbsp;&nbsp;
-                @Html.ActionLink("Dodaj recept", "Create")
-            </button>
+            @*<button class="btn btn-amber">*@
+            <span class="fa fa-plus"></span>&nbsp;&nbsp;
+            @Html.ActionLink("Dodaj recept", "Create")
+            @*</button>*@
 
         </div>
         <div class="col-lg-2">
@@ -64,43 +64,41 @@
 <div class="container">
     <div class="row">
         @foreach (var item in Model.Recipes)
-    {
-        @*@Html.Raw("&nbsp");*@
-    <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#bdc3c7;">
+        {
+            <div class="col-sm-4 p-4 text-center border border-light" style="background-color:#bdc3c7;">
 
+                <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
+                    <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:300px;">
+                </a>
+                @Html.Raw("</br></br>")
+                <p style="font-size:26px; color:#16a085;">
+                    <span class="fa fa-pencil-square-o"></span>
+                    @item.RecipeName
+                </p>
+                <p class="text-info">
+                    <span class="fa fa-calendar-plus-o"></span>
+                    @Html.Raw("&nbsp;&nbsp;&nbsp;")
+                    @item.InputDate
+                </p>
 
-        <a href="@Url.Action("Details", "Recipes", new { id = item.Id })">
-            <img class="img-thumbnail" src="@string.Format("/Content/img/{0}", item.ImageNameToShow)" style="width:300px;">
-        </a>
-        @Html.Raw("</br></br>")
-        <p  style="font-size:26px; color:#16a085;">
-            <span class="fa fa-pencil-square-o"></span>
-            @item.RecipeName
-        </p>
-        <p class="text-info">
-            <span class="fa fa-calendar-plus-o"></span>
-            @Html.Raw("&nbsp;&nbsp;&nbsp;")
-            @item.InputDate
-        </p>
-     
-        @Html.Raw("</br>")
-        @if (User.IsInRole(RolesConfig.ADMIN))
-    {
-        <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-warning btn-md" })
-        @Html.Raw("&nbsp;")
-}
-        <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-outline-success btn-md" })
-        @Html.Raw("&nbsp;")
-        @if (User.IsInRole(RolesConfig.ADMIN))
-    {
-        <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
-        @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-danger btn-md" })
-}
-        <hr>
-    </div>
-}
+                @Html.Raw("</br>")
+                @if (User.IsInRole(RolesConfig.ADMIN))
+                {
+                    <span class="text-primary"><i class="fa fa-pencil" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink("Izmeni ", "Edit", new { id = item.Id }, new { @class = " text-white btn btn-outline-light btn-md" })
+                    @Html.Raw("&nbsp;")
+                }
+                <span class="text-success"><i class="fa fa-th-list" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                @Html.ActionLink("Detalji ", "Details", new { id = item.Id }, new { @class = "text-white btn btn-outline-success btn-md" })
+                @Html.Raw("&nbsp;")
+                @if (User.IsInRole(RolesConfig.ADMIN))
+                {
+                    <span class="text-danger"><i class="fa fa-remove" aria-hidden="true">&nbsp;&nbsp;&nbsp;</i></span>
+                    @Html.ActionLink(" Izbriši", "Delete", new { id = item.Id }, new { @class = "text-white btn btn-outline-light btn-md" })
+                }
+                <hr>
+            </div>
+        }
     </div>
 </div>
 

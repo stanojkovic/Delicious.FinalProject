@@ -8,13 +8,15 @@
 
 <div class="container mb-5">
     <div class="row mt-5">
-
         <div class="col-lg-4">
-
             <h1 class="text-success"> @Model.RecipeName</h1>
-
+            <h4>Autor:</h4>
+            @Html.DisplayFor(m => m.User.Name)
+            @Html.Raw("&nbsp;")
+            @Html.DisplayFor(m => m.User.LastName)
+            @Html.Raw("<br />")
+            @Html.DisplayFor(m => m.InputDate)
         </div>
-
     </div>
     <hr />
     <div class="row mt-3">
@@ -57,7 +59,7 @@
                 <input name="recipeId" type="hidden" value="@Model.Id">
                 <textarea name="comment" type="text" value="" style="border-radius:5px; width:350px; height:100px;"></textarea>
                 <br /><br />
-                <input type="submit" value="Ostavite komentar" class="btn" />
+                <input type="submit" value="Ostavite komentar" class="btn btn-outline-success" />
             }
         </div>
     </div>

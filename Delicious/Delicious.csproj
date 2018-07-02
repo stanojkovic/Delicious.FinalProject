@@ -206,7 +206,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IngredientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Controllers\Submission.cs" />
@@ -254,37 +253,15 @@
     <Content Include="Content\img\no-image-about.jpg" />
     <Content Include="Content\img\no_image.png" />
     <Content Include="Content\img\sasa.jpg" />
-    <Content Include="Content\lightbox\.editorconfig" />
-    <Content Include="Content\lightbox\.gitignore" />
-    <Content Include="Content\lightbox\.jscsrc" />
-    <Content Include="Content\lightbox\.jshintrc" />
-    <Content Include="Content\lightbox\bower.json" />
-    <Content Include="Content\lightbox\CONTRIBUTING.md" />
-    <Content Include="Content\lightbox\DEPLOY.md" />
-    <Content Include="Content\lightbox\dist\css\lightbox.css" />
     <Content Include="Content\lightbox\dist\css\lightbox.min.css" />
     <Content Include="Content\lightbox\dist\images\close.png" />
     <Content Include="Content\lightbox\dist\images\loading.gif" />
     <Content Include="Content\lightbox\dist\images\next.png" />
     <Content Include="Content\lightbox\dist\images\prev.png" />
-    <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.js" />
     <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.min.js" />
     <Content Include="Content\lightbox\dist\js\lightbox-plus-jquery.min.map" />
-    <Content Include="Content\lightbox\dist\js\lightbox.js" />
     <Content Include="Content\lightbox\dist\js\lightbox.min.js" />
     <Content Include="Content\lightbox\dist\js\lightbox.min.map" />
-    <Content Include="Content\lightbox\examples\index.html" />
-    <Content Include="Content\lightbox\Gruntfile.js" />
-    <Content Include="Content\lightbox\LICENSE" />
-    <Content Include="Content\lightbox\package.json" />
-    <Content Include="Content\lightbox\README.md" />
-    <Content Include="Content\lightbox\ROADMAP.md" />
-    <Content Include="Content\lightbox\src\css\lightbox.css" />
-    <Content Include="Content\lightbox\src\images\close.png" />
-    <Content Include="Content\lightbox\src\images\loading.gif" />
-    <Content Include="Content\lightbox\src\images\next.png" />
-    <Content Include="Content\lightbox\src\images\prev.png" />
-    <Content Include="Content\lightbox\src\js\lightbox.js" />
     <Content Include="Content\mdb\css\bootstrap.css" />
     <Content Include="Content\mdb\css\bootstrap.min.css" />
     <Content Include="Content\mdb\css\compiled.min.css" />
@@ -502,11 +479,6 @@
     <Content Include="Views\Recipes\Details.cshtml" />
     <Content Include="Views\Recipes\Edit.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
-    <Content Include="Views\Ingredients\Create.cshtml" />
-    <Content Include="Views\Ingredients\Delete.cshtml" />
-    <Content Include="Views\Ingredients\Details.cshtml" />
-    <Content Include="Views\Ingredients\Edit.cshtml" />
-    <Content Include="Views\Ingredients\Index.cshtml" />
     <Content Include="Views\Recipes\MyRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -73,14 +73,13 @@
                                         @Html.CheckBox(string.Format("Ingredients[{0}].Selected", i), Model.Ingredients.ElementAt(i).Selected)
                                     </div>
                                     <div class="col-lg-6">
-                                        @*if(!@Model.Ingredient)*@
                                         @Html.Label(Model.Ingredients.ElementAt(i).Ingredient.IngredientName)
                                     </div>
                                     <div class="col-lg-3">
                                         @Html.TextBox(string.Format("Ingredients[{0}].Quantity", i), Model.Ingredients.ElementAt(i).Quantity, new { style = "width:105px;" })
                                     </div>
                                     <div class="col-lg-2">
-                                        @Html.DropDownList(string.Format("Ingredients[{0}].UnitOfMeasure", i), new SelectList(Enum.GetValues(typeof(Delicious.Models.RecipeIngredient.Unit))), new { style = "height:30px;" })
+                                        @Html.DropDownList(string.Format("Ingredients[{0}].UnitOfMeasure", i), new SelectList(Enum.GetValues(typeof(Delicious.Models.RecipeIngredient.Unit)), Model.Ingredients.ElementAt(i).UnitOfMeasure), new { style = "height:30px;" })
                                     </div>
 
                                     <br />
@@ -100,7 +99,7 @@
                 <div class="col-lg-2 offset-10">
                     <div class="form-group">
 
-                        <input type="submit" value="Izmenite recept" class="btn btn-default" />
+                        <input type="submit" value="Izmenite recept" class="btn btn-outline-success" />
                     </div>
                 </div>
             </div>

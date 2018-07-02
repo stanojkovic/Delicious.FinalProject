@@ -34,7 +34,6 @@ namespace Delicious.Controllers
                 recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
             }
 
-            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));
@@ -71,12 +70,10 @@ namespace Delicious.Controllers
         public ActionResult Create()
         {
             SetCategory();
-            //SetIngredients();
 
             var allIngredients = db.Ingredients.ToList();
             var recipeIngredientList = new List<RecipeIngredient>();
 
-            // ekvivalentno allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
             foreach (var item in allIngredients)
             {
                 recipeIngredientList.Add(new RecipeIngredient() { Ingredient = item });
@@ -85,7 +82,7 @@ namespace Delicious.Controllers
             var model = new Recipe()
             {
                 // napravi mi listu RecipeIngredient objekata
-                Ingredients = recipeIngredientList // allIngredients.Select(i => new RecipeIngredient() { Ingredient = i }).ToList()
+                Ingredients = recipeIngredientList
             };
 
             return View(model);
@@ -96,7 +93,6 @@ namespace Delicious.Controllers
         [Authorize(Roles = RolesConfig.USER)]
         public ActionResult Create(Recipe formRecipeData, HttpPostedFileBase img)
         {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 var currentUser = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
@@ -128,14 +124,9 @@ namespace Delicious.Controllers
 
                 db.SaveChanges();
 
-                //da bi se nakon kreiranja proizvoda vratili na stranicu na kojoj se prikazuje
-                //odgovarajuca kategorija, a ne recepti svih kategorija
-                var kategorija = recipeForDB.Category.CategoriesName;
-
                 SaveImage(recipeForDB, img);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { kategorija });
-
+                return RedirectToAction("MyRecipes");
             }
 
             SetCategory();
@@ -160,7 +151,6 @@ namespace Delicious.Controllers
 
             //da se pored cekiranih sastojaka dodaju i necekirani iz baze
             var allIngredients = db.Ingredients.ToList();
-
             foreach (Ingredient item in allIngredients)
             {
                 bool n = false;
@@ -170,6 +160,7 @@ namespace Delicious.Controllers
                     if (ri.Ingredient.Equals(item))
                     {
                         n = true;
+                        ri.Selected = true;
                         break;
                     }
                 }
@@ -194,23 +185,24 @@ namespace Delicious.Controllers
                 var recipeBase = db.Recipes.Find(recipeForm.Id);
                 TryUpdateModel(recipeBase, new string[] { "RecipeName", "Description" });
 
-                db.RecipeIngredients.RemoveRange(recipeBase.Ingredients);               
+                db.RecipeIngredients.RemoveRange(recipeBase.Ingredients);
 
-                recipeBase.Ingredients = recipeForm.Ingredients.Select(ri =>
-                               new RecipeIngredient()
-                               {
-                                   Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
-                                   Quantity = ri.Quantity,
-                                   Recipe = recipeBase
-                               }
-                           ).ToList();
+                foreach (RecipeIngredient ri in recipeForm.Ingredients)
+                {
+                    if (ri.Selected)
+                    {
+                        recipeBase.Ingredients.Add(new RecipeIngredient()
+                        {
+                            Ingredient = db.Ingredients.Find(ri.Ingredient.Id),
+                            Quantity = ri.Quantity,
+                            Recipe = recipeBase,
+                            UnitOfMeasure = ri.UnitOfMeasure
+                        });
+                    }
+                }
 
                 recipeBase.Category = db.Categories.Find(recipeForm.Category.Id);
                 recipeForm.InputDate = DateTime.Now;
-
-                //da bi se nakon kreiranja proizvoda vratili na stranicu na kojoj se prikazuje
-                //odgovarajuca kategorija, a ne recepti svih kategorija
-                var kategorija = recipeBase.Category.CategoriesName;
 
                 SaveImage(recipeBase, img);
                 db.SaveChanges();
@@ -219,7 +211,7 @@ namespace Delicious.Controllers
             }
 
             SetCategory();
-            //SetIngredients();
+
             return View(recipeForm);
         }
 
@@ -257,12 +249,9 @@ namespace Delicious.Controllers
                 System.IO.File.Delete(imagePath);
             }
 
-            //ne radi, a nece kao kod create i edit, nije radilo jer je zaboravljeno virtual u  public virtual Category Category { get; set; }
-            var kategorija = recipe.Category.CategoriesName;
-
             //mora prvo da se obrisu redovi iz tabele RecipeIngredients zbog stranog kljuca Recipe_Id
-            var recpieIngredients = db.RecipeIngredients.Where(ri => ri.Recipe.Id == id);
-            foreach(var ri in recpieIngredients)
+            var recepieIngredients = db.RecipeIngredients.Where(ri => ri.Recipe.Id == id);
+            foreach(var ri in recepieIngredients)
             {
                 db.RecipeIngredients.Remove(ri);
             }
@@ -311,7 +300,6 @@ namespace Delicious.Controllers
                 recipes = recipes.Where(r => r.RecipeName.Contains(viewModel.Query));
             }
 
-            //&& (kategorija =="Kolači" || kategorija == "Peciva" || kategorija == "Zdrava Hrana")
             if (viewModel.SortBy != null && viewModel.SortDirection != null)
             {
                 recipes = recipes.OrderBy(string.Format("{0} {1}", viewModel.SortBy, viewModel.SortDirection));

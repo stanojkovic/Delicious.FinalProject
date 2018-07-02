@@ -20,6 +20,7 @@ namespace Delicious.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
         public string ReturnUrl { get; set; }
+        [Display(Name = "Zapamti me?")]
         public bool RememberMe { get; set; }
     }
 
@@ -36,6 +37,7 @@ namespace Delicious.Models
         [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
 
+        [Display(Name = "Zapamti me?")]
         public bool RememberMe { get; set; }
     }
 
@@ -55,19 +57,21 @@ namespace Delicious.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Šifra")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Zapamti me?")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Ime")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Prezime")]
         public string LastName { get; set; }
 
         [Required]
@@ -78,12 +82,12 @@ namespace Delicious.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Šifra")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Potvrdite šifru")]
+        [Compare("Password", ErrorMessage = "Šifra i potvrđena šifra se ne slažu.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -97,12 +101,12 @@ namespace Delicious.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Šifra")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Potvrdite šifru")]
+        [Compare("Password", ErrorMessage = "Šifra i potvrđena šifra se ne slažu.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
